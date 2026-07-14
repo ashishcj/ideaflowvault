@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YJ89GTKT1L"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-YJ89GTKT1L');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Ad Revenue Calculator &amp; Estimator | Ideaflow Vault</title>
+    <meta name="description" content="Calculate your projected website earnings based on page views, CTR, and CPC metrics. Project RPM, monthly, and annual returns with our interactive simulator.">
+    <meta name="keywords" content="ad revenue calculator, RPM calculator, website earnings estimator, blog profit calculator, traffic revenue tracker">
+    <link rel="canonical" href="https://ideaflowvault.com/ad-calculator.html">
+    <meta property="og:title" content="Website Ad Revenue Calculator &amp; Estimator | Ideaflow Vault">
+    <meta property="og:description" content="Calculate your website display ad earnings based on traffic, CTR, and CPC. Try the interactive RPM estimator. 100% free.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ideaflowvault.com/ad-calculator.html">
+    <meta property="og:image" content="https://ideaflowvault.com/logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Website Ad Revenue Calculator &amp; Estimator | Ideaflow Vault">
+    <meta name="twitter:description" content="Calculate display ad earnings based on page views, CTR, and CPC metrics. Try the interactive RPM estimator. 100% free.">
+    <meta name="twitter:image" content="https://ideaflowvault.com/logo.png">
+    <link rel="icon" type="image/png" href="logo.png">
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="FZyLiV0hZULnt7FGhEqJ3ISxDHOS3xOnyRKa8qw_Veo" />
+    <link rel="stylesheet" href="styles.css">
+    <!-- Ezoic Privacy Scripts (Must Load First) -->
+    <script data-cfasync="false" src="https://cmp.gatekeeperconsent.com/min.js"></script>
+    <script data-cfasync="false" src="https://the.gatekeeperconsent.com/cmp.min.js"></script>
+    <!-- Ezoic Header Scripts -->
+    <script async src="//www.ezojs.com/ezoic/sa.min.js"></script>
+    <script>
+    window.ezstandalone = window.ezstandalone || {};
+    ezstandalone.cmd = ezstandalone.cmd || [];
+    </script>
+    <script src="//ezoicanalytics.com/analytics.js"></script>
+    <!-- Google AdSense Site Verification Tag -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2210432744350818"
+         crossorigin="anonymous"></script>
+    
+    <!-- SoftwareApplication Schema for SEO Rich Snippet -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Ideaflow Vault Ad Revenue Calculator",
+      "operatingSystem": "All",
+      "applicationCategory": "BusinessApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Calculate display ad earnings based on traffic, CTR, and CPC parameters. Includes code setup guides for Google AdSense and Ezoic integration.",
+      "url": "https://ideaflowvault.com/ad-calculator.html"
+    }
+    </script>
+</head>
+<body>
+
+    <!-- Navigation Header -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Ideaflow Vault" class="logo-icon"> Ideaflow Vault
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="niche-research.html">Niche Research</a></li>
+                    <li><a href="ad-calculator.html" style="color: #ffffff;">Ad Calculator</a></li>
+                    <li><a href="index.html#tools">Recommended Tools</a></li>
+                    <li><a href="index.html#setup">Ad Setup &amp; Payouts</a></li>
+                    <li><a href="index.html#blog">Guides</a></li>
+                </ul>
+            </nav>
+            <a href="niche-research.html#vault" class="cta-button">Log New Idea</a>
+        </div>
+    </header>
+
+    <!-- Breadcrumb Navigation -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <div class="breadcrumb-container">
+            <a href="index.html">Home</a>
+            <span class="breadcrumb-sep">›</span>
+            <span class="breadcrumb-current">Traffic &amp; Ad Revenue Calculator</span>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main style="margin-top: 2rem;">
+
+        <!-- Header Section -->
+        <section class="section-header" style="margin-bottom: 3rem; text-align: center;">
+            <span class="section-tag">Earnings Estimator</span>
+            <h1 class="section-title" style="font-size: 2.8rem; line-height: 1.2; margin-bottom: 1rem;">Website Ad Revenue Calculator</h1>
+            <p class="section-subtitle" style="max-width: 700px; margin: 0 auto; color: var(--text-secondary);">
+                Estimate your website display ad income using custom page views, Click-Through Rates (CTR), and Cost-Per-Click (CPC) metrics. Pre-configured niches help you forecast yields.
+            </p>
+        </section>
+
+        <!-- Revenue Calculator Section -->
+        <section id="calculator" style="padding-top: 0;">
+            <div class="calc-container">
+                <!-- Inputs Box -->
+                <div class="calc-inputs">
+                    <!-- Page Views Slider -->
+                    <div class="input-group">
+                        <div class="input-header">
+                            <span class="input-label">Monthly Page Views</span>
+                            <span class="input-value-display" id="views-val">100,000</span>
+                        </div>
+                        <input type="range" id="views-slider" min="10000" max="1000000" step="5000" value="100000">
+                    </div>
+
+                    <!-- CTR Slider -->
+                    <div class="input-group">
+                        <div class="input-header">
+                            <span class="input-label">Ad Click-Through Rate (CTR)</span>
+                            <span class="input-value-display" id="ctr-val">1.50%</span>
+                        </div>
+                        <input type="range" id="ctr-slider" min="0.1" max="6.0" step="0.05" value="1.5">
+                    </div>
+
+                    <!-- CPC Slider -->
+                    <div class="input-group">
+                        <div class="input-header">
+                            <span class="input-label">Cost Per Click (CPC)</span>
+                            <span class="input-value-display" id="cpc-val">$0.45</span>
+                        </div>
+                        <input type="range" id="cpc-slider" min="0.05" max="3.00" step="0.01" value="0.45">
+                    </div>
+
+                    <!-- Niche Presets -->
+                    <div style="margin-top: 1rem;">
+                        <span class="input-label" style="display: block; margin-bottom: 0.5rem;">Niche Presets</span>
+                        <div class="preset-ctr-grid">
+                            <button type="button" class="preset-btn" onclick="applyPreset('finance', this)">Finance</button>
+                            <button type="button" class="preset-btn" onclick="applyPreset('tech', this)">Tech / SaaS</button>
+                            <button type="button" class="preset-btn text-active" onclick="applyPreset('hobby', this)">Hobby / Travel</button>
+                            <button type="button" class="preset-btn" onclick="applyPreset('custom', this)">Custom Reset</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results Box -->
+                <div class="calc-results">
+                    <h3 style="font-family: var(--font-heading); margin-bottom: 1.5rem; font-size: 1.25rem;">Estimated Returns</h3>
+                    <div class="results-grid">
+                        <div class="result-card">
+                            <span class="result-label">Calculated Page RPM <br><small style="color: var(--text-muted);">Revenue Per 1,000 Views</small></span>
+                            <span class="result-val" id="rpm-result">$6.75</span>
+                        </div>
+                        <div class="result-card">
+                            <span class="result-label">Estimated Daily Profit</span>
+                            <span class="result-val" id="daily-result">$22.50</span>
+                        </div>
+                        <div class="result-card">
+                            <span class="result-label">Estimated Monthly Revenue</span>
+                            <span class="result-val highlight-val" id="monthly-result">$675.00</span>
+                        </div>
+                        <div class="result-card">
+                            <span class="result-label">Estimated Annual Revenue</span>
+                            <span class="result-val" id="annual-result">$8,100.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Embeddable Calculator Widget -->
+        <div id="embed-widget" style="max-width:780px;margin:0 auto 4rem;padding:0 1.5rem;">
+            <div style="background:var(--bg-surface);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:1.5rem 2rem;text-align:center;">
+                <div style="display:flex;align-items:center;justify-content:center;gap:0.6rem;margin-bottom:0.75rem;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                    <h3 style="font-family:var(--font-heading);font-size:1.05rem;color:var(--text-primary);margin:0;">Embed This Calculator on Your Website</h3>
+                </div>
+                <p style="color:var(--text-muted);font-size:0.88rem;margin-bottom:1rem;line-height:1.6;">Add this free ad revenue calculator to your blog or website. Copy the code below and paste it into your HTML.</p>
+                <button type="button" id="embed-toggle-btn" onclick="toggleEmbedCode()" style="padding:0.65rem 1.5rem;background:transparent;color:var(--primary);border:1.5px solid var(--primary);border-radius:var(--radius-sm);font-family:var(--font-heading);font-weight:700;font-size:0.9rem;cursor:pointer;transition:var(--transition-smooth);" onmouseover="this.style.background='var(--primary)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--primary)'">
+                    &lt;/&gt; Get Embed Code
+                </button>
+                <div id="embed-code-box" style="display:none;margin-top:1.2rem;text-align:left;">
+                    <textarea id="embed-textarea" readonly onclick="this.select()" style="width:100%;height:90px;padding:0.85rem;background:var(--bg-header);color:#e2e8f0;border:1px solid var(--border-color);border-radius:var(--radius-sm);font-family:'Courier New',monospace;font-size:0.8rem;resize:none;line-height:1.5;">&lt;iframe src="https://ideaflowvault.com/ad-calculator.html" width="100%" height="520" style="border:none;border-radius:12px;" title="Free Ad Revenue Calculator by Ideaflow Vault"&gt;&lt;/iframe&gt;
+&lt;p style="font-size:12px;text-align:center;margin-top:6px;"&gt;Powered by &lt;a href="https://ideaflowvault.com/" target="_blank" rel="noopener"&gt;Ideaflow&lt;/a&gt; — Free Niche Research &amp; Ad Revenue Calculator&lt;/p&gt;</textarea>
+                    <button type="button" onclick="copyEmbedCode()" style="margin-top:0.75rem;padding:0.6rem 1.3rem;background:var(--primary);color:#fff;border:none;border-radius:var(--radius-sm);font-family:var(--font-heading);font-weight:700;font-size:0.85rem;cursor:pointer;transition:var(--transition-smooth);" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">&#128203; Copy to Clipboard</button>
+                    <span id="embed-copied-msg" style="display:none;margin-left:0.75rem;color:#10b981;font-weight:600;font-size:0.85rem;">&#10003; Copied!</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ad Setup Guide & Panel -->
+        <section id="setup" style="border-top: 1px solid var(--border-color); padding-top: 4rem; margin-top: 4rem;">
+            <div class="section-header">
+                <span class="section-tag">Publisher Setup</span>
+                <h2 class="section-title">Ad Networks &amp; Payout Integrations</h2>
+                <p class="section-subtitle">Configure your display ads and set up your preferred payment method: PayPal, Payoneer, Wise, or Direct Bank Transfer.</p>
+            </div>
+
+            <div class="guide-tabs">
+                <button type="button" class="tab-btn active-tab" onclick="switchTab('adsense', this)">Google AdSense</button>
+                <button type="button" class="tab-btn" onclick="switchTab('ezoic', this)">Ezoic, Payoneer &amp; Wise</button>
+                <button type="button" class="tab-btn" onclick="switchTab('mediavine', this)">Direct Payment Buttons</button>
+            </div>
+
+            <!-- AdSense Content -->
+            <div class="tab-content active-content" id="tab-content-adsense">
+                <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                    Google AdSense serves text and banner ads automatically. AdSense pays via direct wire transfer, bank deposit (direct deposit), or physical checks once you hit their minimum payment threshold ($100).
+                </p>
+                
+                <h4 style="margin-top: 1.5rem; font-size: 1rem;">1. Header Script Integration</h4>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-lang">HTML Header Code</span>
+                        <button class="copy-btn" onclick="copyCode('adsense-header-code')">Copy</button>
+                    </div>
+                    <pre><code id="adsense-header-code">&lt;!-- Paste this block inside the &lt;head&gt; tags of your site --&gt;
+&lt;script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID"
+     crossorigin="anonymous"&gt;&lt;/script&gt;</code></pre>
+                </div>
+
+                <h4 style="margin-top: 1.5rem; font-size: 1rem;">2. Body Ad Slot Container</h4>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-lang">HTML Body Placement</span>
+                        <button class="copy-btn" onclick="copyCode('adsense-body-code')">Copy</button>
+                    </div>
+                    <pre><code id="adsense-body-code">&lt;!-- Place this ad block container where the banner should show --&gt;
+&lt;ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
+     data-ad-slot="YOUR_AD_SLOT_ID"
+     data-ad-format="auto"
+     data-full-width-responsive="true"&gt;&lt;/ins&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Ezoic Content -->
+            <div class="tab-content" id="tab-content-ezoic">
+                <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                    Ezoic is a display ad network that fully supports direct payouts to <strong>PayPal</strong>, <strong>Payoneer</strong>, and <strong>Wise (via international bank transfers)</strong>.
+                </p>
+                <div style="background-color: #f8fafc; border: 1px solid var(--border-color); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; font-size: 0.9rem; color: var(--text-secondary);">
+                    <h4 style="color: var(--text-primary); margin-bottom: 0.5rem;">Alternative Payment Options on Ezoic:</h4>
+                    <ul style="margin-left: 1.25rem; list-style-type: disc;">
+                        <li style="margin-bottom: 0.5rem;"><strong>Payoneer</strong>: Link your Ezoic dashboard directly to Payoneer. It offers extremely low conversion fees and allows you to withdraw funds directly in your local currency.</li>
+                        <li style="margin-bottom: 0.5rem;"><strong>Wise (Direct Bank Transfer)</strong>: Enter the bank details provided by Wise (Multi-currency Account routing and account numbers) into the Bank Transfer field in Ezoic to receive low-fee transfers.</li>
+                        <li style="margin-bottom: 0.5rem;"><strong>Direct Deposit (ACH/Wire)</strong>: Standard payouts directly to your local bank account.</li>
+                    </ul>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-lang">Ezoic Integration Tag</span>
+                        <button class="copy-btn" onclick="copyCode('ezoic-code')">Copy</button>
+                    </div>
+                    <pre><code id="ezoic-code">&lt;!-- Place Ezoic header placeholder script tag --&gt;
+&lt;script type="text/javascript"&gt;
+var ezoicId = YOUR_EZOIC_ID; 
+&lt;/script&gt;
+&lt;script type="text/javascript" src="//g.ezoic.net/ezoic/ezoic.js" async&gt;&lt;/script&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Direct Support button Content -->
+            <div class="tab-content" id="tab-content-mediavine">
+                <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                    In addition to programmatic display ads, you can embed direct support buttons from platforms like <strong>Stripe Payment Links</strong>, <strong>Buy Me A Coffee</strong>, or <strong>Ko-fi</strong> to receive instant payouts.
+                </p>
+
+                <h4 style="font-size: 1rem; margin-bottom: 0.75rem;">Embeddable Stripe/Custom Support Link Button</h4>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-lang">HTML Button Link</span>
+                        <button class="copy-btn" onclick="copyCode('stripe-button-code')">Copy</button>
+                    </div>
+                    <pre><code id="stripe-button-code">&lt;!-- Simple HTML Support Button linking to your Stripe or BuyMeACoffee Page --&gt;
+&lt;a href="https://buy.stripe.com/YOUR_STRIPE_LINK_OR_BUYMEACOFFEE_URL" target="_blank" 
+   style="display: inline-block; background-color: #2563eb; color: #ffffff; padding: 0.75rem 1.5rem; text-decoration: none; border-radius: 6px; font-weight: 600; font-family: sans-serif;"&gt;
+    Support My Work
+&lt;/a&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Production Deploy Integration Configurator -->
+            <div class="setup-panel">
+                <div class="toggle-switch-container">
+                    <div class="toggle-info">
+                        <h4>Enable Live Production Ads</h4>
+                        <p>Switch from simulation dashboard ads to real serving Google AdSense banners (requires deployment on domain).</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="production-toggle" checked onchange="toggleProductionMode()">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="input-fields-inline">
+                    <div class="text-input-group">
+                        <label for="publisher-id">Google Publisher ID (ca-pub-xxxx)</label>
+                        <input type="text" id="publisher-id" placeholder="e.g. ca-pub-1234567890123456" oninput="updateProductionSnippets()">
+                    </div>
+                    <div class="text-input-group">
+                        <label for="adslot-id">Default Ad Slot ID</label>
+                        <input type="text" id="adslot-id" placeholder="e.g. 9876543210" oninput="updateProductionSnippets()">
+                    </div>
+                </div>
+
+                <div class="input-fields-inline" style="margin-top: 1.5rem; border-top: 1px solid var(--border-color); padding-top: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+                    <div class="text-input-group">
+                        <label for="hostinger-affiliate">Hostinger Affiliate Link (Referral URL)</label>
+                        <input type="text" id="hostinger-affiliate" placeholder="e.g. https://hostinger.com?REFERRAL_CODE" oninput="updateProductionSnippets()">
+                    </div>
+                    <div class="text-input-group">
+                        <label for="linkwhisper-affiliate">Link Whisper Affiliate Link (Referral URL)</label>
+                        <input type="text" id="linkwhisper-affiliate" value="https://linkwhisper.com/ref/4248/" placeholder="e.g. https://linkwhisper.com?REFERRAL_CODE" oninput="updateProductionSnippets()">
+                    </div>
+                    <div class="text-input-group">
+                        <label for="amazon-affiliate">Amazon Associate Link (Referral URL)</label>
+                        <input type="text" id="amazon-affiliate" value="https://www.amazon.in/s?k=productivity+planner&tag=ideaflowvault-21" placeholder="e.g. https://amazon.in/shop/YOUR_ID" oninput="updateProductionSnippets()">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-top">
+            <div class="footer-brand">
+                <a href="index.html" class="footer-logo">
+                    <img src="logo.png" alt="Ideaflow Vault" class="footer-logo-icon"> Ideaflow Vault
+                </a>
+                <p class="footer-tagline">The free niche research and ad revenue planning workspace for side hustle builders.</p>
+            </div>
+            <div class="footer-nav">
+                <h4>Explore</h4>
+                <a href="index.html#why">Why Ideaflow Vault</a>
+                <a href="niche-research.html">Niche Directory</a>
+                <a href="niche-research.html#vault">Research Vault</a>
+                <a href="ad-calculator.html">Ad Calculator</a>
+                <a href="index.html#setup">Ad Setup</a>
+                <a href="index.html#blog">Guides</a>
+            </div>
+            <div class="footer-nav">
+                <h4>Resources</h4>
+                <a href="https://www.google.com/adsense" target="_blank" rel="noopener noreferrer nofollow">Google AdSense</a>
+                <a href="https://www.ezoic.com" target="_blank" rel="noopener noreferrer nofollow">Ezoic</a>
+                <a href="https://affiliate-program.amazon.in/" target="_blank" rel="noopener noreferrer nofollow">Amazon Associates</a>
+                <a href="https://www.hostinger.com/affiliates" target="_blank" rel="noopener noreferrer nofollow">Hostinger Affiliates</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Ideaflow (ideaflowvault.com). Free to use. Ad simulator metrics are for layout demonstration purposes only. | 
+                <a href="about.html" style="color: var(--text-muted); text-decoration: underline;">About Us</a> | 
+                <a href="contact.html" style="color: var(--text-muted); text-decoration: underline;">Contact Us</a> | 
+                <a href="terms.html" style="color: var(--text-muted); text-decoration: underline;">Terms of Service</a> | 
+                <a href="privacy.html" style="color: var(--text-muted); text-decoration: underline;">Privacy Policy</a>
+            </p>
+            <a href="#" class="back-to-top">Back to Top</a>
+        </div>
+    </footer>
+
+    <!-- Interactive Script -->
+    <script>
+        let productionModeActive = true;
+
+        // Calculator Inputs
+        const viewsSlider = document.getElementById('views-slider');
+        const ctrSlider = document.getElementById('ctr-slider');
+        const cpcSlider = document.getElementById('cpc-slider');
+
+        // Calculator Outputs Display
+        const viewsVal = document.getElementById('views-val');
+        const ctrVal = document.getElementById('ctr-val');
+        const cpcVal = document.getElementById('cpc-val');
+
+        const rpmResult = document.getElementById('rpm-result');
+        const dailyResult = document.getElementById('daily-result');
+        const monthlyResult = document.getElementById('monthly-result');
+        const annualResult = document.getElementById('annual-result');
+
+        // Code snippets
+        const adsenseHeaderCode = document.getElementById('adsense-header-code');
+        const adsenseBodyCode = document.getElementById('adsense-body-code');
+
+        // Initialize Workspace
+        window.addEventListener('DOMContentLoaded', () => {
+            viewsSlider.addEventListener('input', updateCalculator);
+            ctrSlider.addEventListener('input', updateCalculator);
+            cpcSlider.addEventListener('input', updateCalculator);
+
+            updateCalculator();
+            toggleProductionMode();
+
+            // Parse URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const paramVolume = urlParams.get('volume');
+            const paramCpc = urlParams.get('cpc');
+            const paramName = urlParams.get('name');
+
+            if (paramVolume || paramCpc || paramName) {
+                if (paramVolume) {
+                    const parsedVol = parseInt(paramVolume);
+                    if (!isNaN(parsedVol)) {
+                        viewsSlider.value = parsedVol > 1000000 ? 1000000 : parsedVol;
+                    }
+                }
+                if (paramCpc) {
+                    const parsedCpc = parseFloat(paramCpc);
+                    if (!isNaN(parsedCpc)) {
+                        cpcSlider.value = parsedCpc;
+                    }
+                }
+                // Set default/standard CTR for loaded presets
+                ctrSlider.value = 1.80;
+
+                updateCalculator();
+                
+                let displayName = paramName ? decodeURIComponent(paramName) : 'Custom Niche';
+                showToast(`Loaded "${displayName}" stats into the calculator!`);
+            }
+        });
+
+        // Format currency helper
+        function formatCurrency(amount) {
+            return '$' + amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        // Calculator updates
+        function updateCalculator() {
+            const views = parseInt(viewsSlider.value);
+            const ctr = parseFloat(ctrSlider.value);
+            const cpc = parseFloat(cpcSlider.value);
+
+            viewsVal.textContent = views.toLocaleString();
+            ctrVal.textContent = ctr.toFixed(2) + '%';
+            cpcVal.textContent = '$' + cpc.toFixed(2);
+
+            const rpm = ctr * cpc * 10;
+            const daily = (views / 30) * (rpm / 1000);
+            const monthly = views * (rpm / 1000);
+            const annual = monthly * 12;
+
+            rpmResult.textContent = '$' + rpm.toFixed(2);
+            dailyResult.textContent = '$' + daily.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            monthlyResult.textContent = '$' + monthly.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            annualResult.textContent = '$' + annual.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        // Embed calculator widget functions
+        function toggleEmbedCode() {
+            const box = document.getElementById('embed-code-box');
+            box.style.display = box.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function copyEmbedCode() {
+            const textarea = document.getElementById('embed-textarea');
+            textarea.select();
+            textarea.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(textarea.value).then(() => {
+                const msg = document.getElementById('embed-copied-msg');
+                msg.style.display = 'inline';
+                setTimeout(() => { msg.style.display = 'none'; }, 2500);
+            });
+        }
+
+        // Presets profiles
+        function applyPreset(presetType, element) {
+            document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
+            
+            const eventTarget = element || (window.event ? (window.event.currentTarget || window.event.target) : null);
+            if (eventTarget) {
+                eventTarget.classList.add('active');
+            }
+
+            if (presetType === 'finance') {
+                ctrSlider.value = 0.90;
+                cpcSlider.value = 2.10;
+                viewsSlider.value = 50000;
+            } else if (presetType === 'tech') {
+                ctrSlider.value = 1.60;
+                cpcSlider.value = 0.95;
+                viewsSlider.value = 120000;
+            } else if (presetType === 'hobby') {
+                ctrSlider.value = 2.80;
+                cpcSlider.value = 0.22;
+                viewsSlider.value = 250000;
+            } else if (presetType === 'custom') {
+                ctrSlider.value = 1.50;
+                cpcSlider.value = 0.45;
+                viewsSlider.value = 100000;
+            }
+
+            updateCalculator();
+        }
+
+        // Tab switcher inside Integration Setup
+        function switchTab(tabId, element) {
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            tabButtons.forEach(btn => btn.classList.remove('active-tab'));
+
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => content.classList.remove('active-content'));
+
+            const eventTarget = element || (window.event ? (window.event.currentTarget || window.event.target) : null);
+            if (eventTarget) {
+                eventTarget.classList.add('active-tab');
+            } else {
+                tabButtons.forEach(btn => {
+                    if (btn.textContent.toLowerCase().includes(tabId)) {
+                        btn.classList.add('active-tab');
+                    }
+                });
+            }
+
+            document.getElementById('tab-content-' + tabId).classList.add('active-content');
+        }
+
+        // Clipboard Copy function
+        function copyCode(elementId) {
+            const codeText = document.getElementById(elementId).textContent;
+            navigator.clipboard.writeText(codeText).then(() => {
+                const copyBtn = document.querySelector(`[onclick="copyCode('${elementId}')"]`);
+                const originalText = copyBtn.innerHTML;
+                
+                copyBtn.innerHTML = 'Copied!';
+                copyBtn.style.borderColor = 'var(--accent)';
+                copyBtn.style.color = 'var(--accent)';
+                
+                setTimeout(() => {
+                    copyBtn.innerHTML = originalText;
+                    copyBtn.style.borderColor = '';
+                    copyBtn.style.color = '';
+                }, 2000);
+            }).catch(err => {
+                console.error('Could not copy code snippet', err);
+            });
+        }
+
+        // Production Mode Toggle
+        function toggleProductionMode() {
+            const toggle = document.getElementById('production-toggle');
+            productionModeActive = toggle.checked;
+
+            if (productionModeActive) {
+                updateProductionSnippets();
+                showToast('Production Mode Active. Live redirects configured.');
+            } else {
+                showToast('Simulation Mode Active.');
+            }
+        }
+
+        // Live replace real Publisher metrics inside code blocks
+        function updateProductionSnippets() {
+            let pubId = document.getElementById('publisher-id').value.trim();
+            let slotId = document.getElementById('adslot-id').value.trim();
+
+            if (!pubId) pubId = 'ca-pub-YOUR_PUBLISHER_ID';
+            if (!slotId) slotId = 'YOUR_AD_SLOT_ID';
+
+            adsenseHeaderCode.textContent = `<!-- Paste this block inside the <head> tags of your site -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${pubId}"
+     crossorigin="anonymous"><\/script>`;
+
+            adsenseBodyCode.textContent = `<!-- Place this ad block container where the banner should show -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="${pubId}"
+     data-ad-slot="${slotId}"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+<\/script>`;
+        }
+
+        // Toast visual alert box
+        function showToast(message) {
+            const existing = document.querySelector('.toast-msg');
+            if (existing) {
+                document.body.removeChild(existing);
+            }
+
+            const toast = document.createElement('div');
+            toast.className = 'toast-msg';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    document.body.removeChild(toast);
+                }
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
