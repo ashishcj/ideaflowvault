@@ -60,8 +60,15 @@
       "url": "https://ideaflowvault.com/ad-calculator.html"
     }
     </script>
+    <!-- Chart.js for interactive calculations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <script>
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.body.classList.add('dark-theme');
+        }
+    </script>
 
     <!-- Navigation Header -->
     <header>
@@ -79,7 +86,10 @@
                     <li><a href="index.html#blog">Guides</a></li>
                 </ul>
             </nav>
-            <a href="niche-research.html#vault" class="cta-button">Log New Idea</a>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <button type="button" class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+                <a href="niche-research.html#vault" class="cta-button">Log New Idea</a>
+            </div>
         </div>
     </header>
 
@@ -167,6 +177,13 @@
                         <div class="result-card">
                             <span class="result-label">Estimated Annual Revenue</span>
                             <span class="result-val" id="annual-result">$8,100.00</span>
+                        </div>
+                    </div>
+                    <!-- Earnings Projection Chart -->
+                    <div class="chart-wrapper">
+                        <div class="chart-title">Estimated Monthly Revenue Projections (12 Months)</div>
+                        <div style="position: relative; flex: 1; min-height: 200px;">
+                            <canvas id="revenue-chart"></canvas>
                         </div>
                     </div>
                 </div>
@@ -366,6 +383,9 @@ var ezoicId = YOUR_EZOIC_ID;
                 <a href="terms.html" style="color: var(--text-muted); text-decoration: underline;">Terms of Service</a> | 
                 <a href="privacy.html" style="color: var(--text-muted); text-decoration: underline;">Privacy Policy</a>
             </p>
+            <div class="footer-disclaimer">
+                Disclaimer: ideaflowvault.com is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to amazon.in (or amazon.com).
+            </div>
             <a href="#" class="back-to-top">Back to Top</a>
         </div>
     </footer>
@@ -373,6 +393,7 @@ var ezoicId = YOUR_EZOIC_ID;
     <!-- Interactive Script -->
     <script>
         let productionModeActive = true;
+        let revenueChart = null;
 
         // Calculator Inputs
         const viewsSlider = document.getElementById('views-slider');
@@ -399,8 +420,24 @@ var ezoicId = YOUR_EZOIC_ID;
             ctrSlider.addEventListener('input', updateCalculator);
             cpcSlider.addEventListener('input', updateCalculator);
 
+            // Initialize Dynamic Chart
+            initRevenueChart();
+
             updateCalculator();
             toggleProductionMode();
+
+            // Theme Toggler Switch Logic
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            if (themeToggleBtn) {
+                themeToggleBtn.textContent = document.body.classList.contains('dark-theme') ? '☀️' : '🌙';
+                themeToggleBtn.addEventListener('click', () => {
+                    document.body.classList.toggle('dark-theme');
+                    const isDark = document.body.classList.contains('dark-theme');
+                    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                    themeToggleBtn.textContent = isDark ? '☀️' : '🌙';
+                    updateChartColors(isDark);
+                });
+            }
 
             // Parse URL parameters
             const urlParams = new URLSearchParams(window.location.search);
@@ -455,6 +492,81 @@ var ezoicId = YOUR_EZOIC_ID;
             dailyResult.textContent = '$' + daily.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             monthlyResult.textContent = '$' + monthly.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             annualResult.textContent = '$' + annual.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+            // Update Dynamic Chart data smoothly
+            if (revenueChart) {
+                revenueChart.data.datasets[0].data = Array.from({length: 12}, () => monthly);
+                revenueChart.update('none'); // Update immediately without transition flash
+            }
+        }
+
+        // Initialize Chart.js
+        function initRevenueChart() {
+            const ctx = document.getElementById('revenue-chart');
+            if (!ctx) return;
+
+            const isDark = document.body.classList.contains('dark-theme');
+            const gridColor = isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(15, 23, 42, 0.08)';
+            const textColor = isDark ? '#cbd5e1' : '#475569';
+
+            const months = ['Month 1', 'Month 2', 'Month 3', 'Month 4', 'Month 5', 'Month 6', 'Month 7', 'Month 8', 'Month 9', 'Month 10', 'Month 11', 'Month 12'];
+            
+            const initialMonthly = parseFloat(monthlyResult.textContent.replace('$', '').replace(/,/g, '')) || 0;
+            const data = Array.from({length: 12}, () => initialMonthly);
+
+            revenueChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: months,
+                    datasets: [{
+                        label: 'Estimated Earnings ($)',
+                        data: data,
+                        backgroundColor: '#2563eb',
+                        hoverBackgroundColor: '#1d4ed8',
+                        borderRadius: 4,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return ' Earnings: $' + context.raw.toFixed(2);
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: textColor, font: { family: 'Plus Jakarta Sans' } }
+                        },
+                        y: {
+                            grid: { color: gridColor },
+                            ticks: {
+                                color: textColor,
+                                font: { family: 'Plus Jakarta Sans' },
+                                callback: function(value) { return '$' + value; }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Update colors when theme changes
+        function updateChartColors(isDark) {
+            if (!revenueChart) return;
+            const gridColor = isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(15, 23, 42, 0.08)';
+            const textColor = isDark ? '#cbd5e1' : '#475569';
+
+            revenueChart.options.scales.x.ticks.color = textColor;
+            revenueChart.options.scales.y.grid.color = gridColor;
+            revenueChart.options.scales.y.ticks.color = textColor;
+            revenueChart.update();
         }
 
         // Embed calculator widget functions

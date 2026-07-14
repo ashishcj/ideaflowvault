@@ -1809,3 +1809,83 @@ footer {
         margin-top: 5rem;
     }
 }
+
+/* --- Dark Theme Custom Variables --- */
+body.dark-theme {
+    --bg-main: #0f172a;       /* slate-900 */
+    --bg-surface: #1e293b;    /* slate-800 */
+    --border-color: #334155;  /* slate-700 */
+    --border-hover: #475569;  /* slate-600 */
+    --text-primary: #f8fafc;  /* slate-50 */
+    --text-secondary: #cbd5e1;/* slate-300 */
+    --text-muted: #94a3b8;    /* slate-400 */
+    --primary-glow: #172554;  /* slate-950/blue */
+    --secondary-glow: #083344;
+    --accent-glow: #022c22;
+}
+
+/* Override Ezoic image comparison background inside dark mode if any */
+body.dark-theme .idea-box, 
+body.dark-theme .guide-tabs,
+body.dark-theme .code-container pre {
+    background-color: #1e293b !important;
+}
+
+/* Theme Toggle Button Style */
+.theme-toggle-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #ffffff !important;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.15rem;
+    transition: var(--transition-smooth);
+    padding: 0;
+    margin-right: 0.5rem;
+}
+
+.theme-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--primary);
+    transform: rotate(15deg);
+}
+
+/* Chart Canvas styling and alignment */
+.chart-wrapper {
+    margin-top: 1.5rem;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    width: 100%;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-title {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    text-align: left;
+}
+
+/* Amazon compliance disclaimer footer section style */
+.footer-disclaimer {
+    width: 100%;
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.5;
+    text-align: left;
+}
+

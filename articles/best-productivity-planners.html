@@ -66,7 +66,7 @@
         "lowPrice": "499",
         "highPrice": "999",
         "offerCount": "10",
-        "url": "https://www.amazon.in/s?k=productivity+planner&tag=ideaflowvault-21"
+        "url": "https://www.amazon.in/s?k=doodle+undated+productivity+planner+kit&tag=ideaflowvault-21"
       }
     }
     </script>
@@ -214,6 +214,11 @@
     </style>
 </head>
 <body>
+    <script>
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.body.classList.add('dark-theme');
+        }
+    </script>
 
     <!-- Navigation Header -->
     <header>
@@ -231,7 +236,10 @@
                     <li><a href="../#blog">Guides</a></li>
                 </ul>
             </nav>
-            <a href="../niche-research.html#vault" class="cta-button">Log New Idea</a>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <button type="button" class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+                <a href="../niche-research.html#vault" class="cta-button">Log New Idea</a>
+            </div>
         </div>
     </header>
 
@@ -269,7 +277,7 @@
             <p>A physical paper planner offers a distraction-free space to map out your day. Writing by hand has been proven to increase focus, improve memory retention, and clarify goal structure. It forces you to prioritize your top 3 needle-moving tasks every single day.</p>
             
             <div style="text-align: center; margin: 1.5rem 0;">
-                <a href="https://www.amazon.in/s?k=productivity+planner&tag=ideaflowvault-21" target="_blank" rel="noopener noreferrer nofollow" class="inline-cta-btn" style="align-self: center; display: inline-block;">Shop Top Rated Planners on Amazon &rarr;</a>
+                <a href="https://www.amazon.in/s?k=doodle+undated+productivity+planner+kit&tag=ideaflowvault-21" target="_blank" rel="noopener noreferrer nofollow" class="inline-cta-btn" style="align-self: center; display: inline-block;">Shop Top Rated Planners on Amazon &rarr;</a>
             </div>
 
             <div class="highlight-box">
@@ -291,7 +299,7 @@
                 <div class="inline-cta-info">
                     <h4>Our Top Choice: Premium Weekly Productivity Planner</h4>
                     <p>Designed specifically to help side-project builders track daily goals, structure tasks, and build consistent habits. Featuring premium undated pages, weekly reviews, and high-grade binding.</p>
-                    <a href="https://www.amazon.in/s?k=productivity+planner&tag=ideaflowvault-21" target="_blank" rel="noopener noreferrer nofollow" class="inline-cta-btn">View Details on Amazon</a>
+                    <a href="https://www.amazon.in/s?k=doodle+undated+productivity+planner+kit&tag=ideaflowvault-21" target="_blank" rel="noopener noreferrer nofollow" class="inline-cta-btn">View Details on Amazon</a>
                 </div>
             </div>
 
@@ -364,9 +372,27 @@
                 <a href="../terms.html" style="color: var(--text-muted); text-decoration: underline;">Terms of Service</a> | 
                 <a href="../privacy.html" style="color: var(--text-muted); text-decoration: underline;">Privacy Policy</a>
             </p>
+            <div class="footer-disclaimer">
+                Disclaimer: ideaflowvault.com is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to amazon.in (or amazon.com).
+            </div>
             <a href="#" class="back-to-top">Back to Top</a>
         </div>
     </footer>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            if (themeToggleBtn) {
+                themeToggleBtn.textContent = document.body.classList.contains('dark-theme') ? '☀️' : '🌙';
+                themeToggleBtn.addEventListener('click', () => {
+                    document.body.classList.toggle('dark-theme');
+                    const isDark = document.body.classList.contains('dark-theme');
+                    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                    themeToggleBtn.textContent = isDark ? '☀️' : '🌙';
+                });
+            }
+        });
+    </script>
 
 </body>
 </html>

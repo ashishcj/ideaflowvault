@@ -55,6 +55,11 @@
     </style>
 </head>
 <body>
+    <script>
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.body.classList.add('dark-theme');
+        }
+    </script>
 
     <!-- Navigation Header -->
     <header>
@@ -72,7 +77,10 @@
                     <li><a href="index.html#blog">Guides</a></li>
                 </ul>
             </nav>
-            <a href="niche-research.html#vault" class="cta-button">Log New Idea</a>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <button type="button" class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+                <a href="niche-research.html#vault" class="cta-button">Log New Idea</a>
+            </div>
         </div>
     </header>
 
@@ -151,9 +159,27 @@
                 <a href="terms.html" style="color: var(--text-muted); text-decoration: underline;">Terms of Service</a> | 
                 <a href="privacy.html" style="color: var(--text-muted); text-decoration: underline;">Privacy Policy</a>
             </p>
+            <div class="footer-disclaimer">
+                Disclaimer: ideaflowvault.com is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to amazon.in (or amazon.com).
+            </div>
             <a href="#" class="back-to-top">Back to Top</a>
         </div>
     </footer>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            if (themeToggleBtn) {
+                themeToggleBtn.textContent = document.body.classList.contains('dark-theme') ? '☀️' : '🌙';
+                themeToggleBtn.addEventListener('click', () => {
+                    document.body.classList.toggle('dark-theme');
+                    const isDark = document.body.classList.contains('dark-theme');
+                    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                    themeToggleBtn.textContent = isDark ? '☀️' : '🌙';
+                });
+            }
+        });
+    </script>
 
 </body>
 </html>
