@@ -234,8 +234,8 @@
                                 <button type="button" onclick="copyShareableLink()" class="share-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; border-radius: var(--radius-sm); background: var(--bg-main); border: 1px solid var(--border-color); color: var(--text-secondary); cursor: pointer; display: flex; align-items: center; gap: 0.3rem;" onmouseover="this.style.borderColor='var(--primary)'" onmouseout="this.style.borderColor='var(--border-color)'">
                                     🔗 Share Link
                                 </button>
-                                <button type="button" onclick="downloadChartAsImage()" class="share-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; border-radius: var(--radius-sm); background: var(--bg-main); border: 1px solid var(--border-color); color: var(--text-secondary); cursor: pointer; display: flex; align-items: center; gap: 0.3rem;" onmouseover="this.style.borderColor='var(--primary)'" onmouseout="this.style.borderColor='var(--border-color)'">
-                                    📥 Save Image
+                                <button type="button" onclick="downloadResultsCard()" class="share-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; border-radius: var(--radius-sm); background: var(--bg-main); border: 1px solid var(--border-color); color: var(--text-secondary); cursor: pointer; display: flex; align-items: center; gap: 0.3rem;" onmouseover="this.style.borderColor='var(--primary)'" onmouseout="this.style.borderColor='var(--border-color)'">
+                                    📥 Save Stats Card
                                 </button>
                             </div>
                         </div>
@@ -650,15 +650,142 @@
             document.body.removeChild(textArea);
         }
 
-        // Save Chart as PNG image
-        function downloadChartAsImage() {
-            const canvas = document.getElementById('revenue-chart');
-            if (!canvas) return;
+        // Save branded results card as PNG image
+        function downloadResultsCard() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 800;
+            canvas.height = 450;
+            const ctx = canvas.getContext('2d');
+
+            const views = parseInt(viewsSlider.value);
+            const ctr = parseFloat(ctrSlider.value);
+            const cpc = parseFloat(cpcSlider.value);
+            const rpm = ctr * cpc * 10;
+            const monthly = views * (rpm / 1000);
+            const annual = monthly * 12;
+
+            // 1. Draw Background Gradient
+            const gradient = ctx.createLinearGradient(0, 0, 800, 450);
+            gradient.addColorStop(0, '#0b0f19'); // Dark slate
+            gradient.addColorStop(1, '#1b1429'); // Deep dark purple
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 800, 450);
+
+            // Add background decorative glows
+            ctx.beginPath();
+            ctx.arc(80, 80, 150, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(37, 99, 235, 0.08)'; // primary glow
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.arc(720, 370, 180, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(99, 102, 241, 0.06)'; // secondary glow
+            ctx.fill();
+
+            // Draw outer border
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(10, 10, 780, 430);
+
+            // 2. Header Branding
+            ctx.fillStyle = '#6366f1'; // Indigo accent color
+            ctx.font = 'bold 22px "Plus Jakarta Sans", sans-serif';
+            ctx.fillText('⚡ IDEAFLOW VAULT', 40, 55);
+
+            ctx.fillStyle = '#94a3b8'; // Slate secondary text
+            ctx.font = '14px "Plus Jakarta Sans", sans-serif';
+            ctx.fillText('Ad Revenue Projection Card', 40, 75);
+
+            // Live Date / Stamp
+            ctx.fillStyle = '#64748b';
+            ctx.font = '12px monospace';
+            const timestamp = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+            ctx.fillText(timestamp, 620, 55);
+
+            // Divider Line
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(40, 95);
+            ctx.lineTo(760, 95);
+            ctx.stroke();
+
+            // 3. Inputs Section (3 Columns)
+            const inputLabels = ['MONTHLY TRAFFIC', 'CLICK-THROUGH RATE', 'COST PER CLICK'];
+            const inputValues = [views.toLocaleString() + ' Views', ctr.toFixed(2) + '% CTR', '$' + cpc.toFixed(2) + ' CPC'];
+            const colWidth = 240;
+            const startX = 40;
+            const startY = 120;
+
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.03)';
+            ctx.fillRect(startX, startY, 720, 75);
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
+            ctx.strokeRect(startX, startY, 720, 75);
+
+            for (let i = 0; i < 3; i++) {
+                ctx.fillStyle = '#94a3b8';
+                ctx.font = 'bold 11px sans-serif';
+                ctx.fillText(inputLabels[i], startX + 20 + (i * colWidth), startY + 28);
+
+                ctx.fillStyle = '#f8fafc';
+                ctx.font = 'bold 20px sans-serif';
+                ctx.fillText(inputValues[i], startX + 20 + (i * colWidth), startY + 54);
+
+                // column separators
+                if (i < 2) {
+                    ctx.beginPath();
+                    ctx.moveTo(startX + (i + 1) * colWidth, startY + 15);
+                    ctx.lineTo(startX + (i + 1) * colWidth, startY + 60);
+                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.06)';
+                    ctx.stroke();
+                }
+            }
+
+            // 4. Primary Results Grid (3 Cards)
+            const resultLabels = ['PAGE RPM (YIELD)', 'EST. MONTHLY PROFIT', 'EST. ANNUAL INCOME'];
+            const resultValues = ['$' + rpm.toFixed(2), '$' + monthly.toLocaleString('en-US', { minimumFractionDigits: 2 }), '$' + annual.toLocaleString('en-US', { minimumFractionDigits: 2 })];
+
+            for (let i = 0; i < 3; i++) {
+                const cardX = startX + (i * colWidth);
+                const cardY = 220;
+                
+                // Card Background
+                if (i === 1) { // highlight center card
+                    ctx.fillStyle = 'rgba(37, 99, 235, 0.15)';
+                    ctx.fillRect(cardX, cardY, 220, 130);
+                    ctx.strokeStyle = '#2563eb';
+                    ctx.lineWidth = 1.5;
+                    ctx.strokeRect(cardX, cardY, 220, 130);
+                } else {
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.02)';
+                    ctx.fillRect(cardX, cardY, 220, 130);
+                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.06)';
+                    ctx.lineWidth = 1;
+                    ctx.strokeRect(cardX, cardY, 220, 130);
+                }
+
+                // Card Label
+                ctx.fillStyle = i === 1 ? '#60a5fa' : '#94a3b8';
+                ctx.font = 'bold 11px sans-serif';
+                ctx.fillText(resultLabels[i], cardX + 20, cardY + 35);
+
+                // Card Value
+                ctx.fillStyle = i === 1 ? '#38bdf8' : '#f1f5f9';
+                ctx.font = 'bold 26px sans-serif';
+                ctx.fillText(resultValues[i], cardX + 20, cardY + 80);
+            }
+
+            // 5. Footer Branding
+            ctx.fillStyle = '#64748b';
+            ctx.font = '12px sans-serif';
+            ctx.fillText('Project your website ad earnings free at: www.ideaflowvault.com', 40, 400);
+
+            // Download trigger
             const imageLink = document.createElement('a');
-            imageLink.download = `Ideaflow_Revenue_Projection_${Date.now()}.png`;
+            imageLink.download = `Ideaflow_Report_${views}views_${rpm.toFixed(0)}rpm_${Date.now()}.png`;
             imageLink.href = canvas.toDataURL('image/png');
             imageLink.click();
-            showToast('Chart downloaded as PNG!');
+            showToast('Earnings Card downloaded successfully!');
         }
 
         // Embed calculator widget functions
