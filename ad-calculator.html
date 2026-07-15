@@ -181,7 +181,17 @@
                     </div>
                     <!-- Earnings Projection Chart -->
                     <div class="chart-wrapper">
-                        <div class="chart-title">Estimated Monthly Revenue Projections (12 Months)</div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
+                            <div class="chart-title" style="margin: 0;">Estimated Monthly Revenue Projections (12 Months)</div>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <button type="button" onclick="copyShareableLink()" class="share-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; border-radius: var(--radius-sm); background: var(--bg-main); border: 1px solid var(--border-color); color: var(--text-secondary); cursor: pointer; display: flex; align-items: center; gap: 0.3rem;" onmouseover="this.style.borderColor='var(--primary)'" onmouseout="this.style.borderColor='var(--border-color)'">
+                                    🔗 Share Link
+                                </button>
+                                <button type="button" onclick="downloadChartAsImage()" class="share-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; border-radius: var(--radius-sm); background: var(--bg-main); border: 1px solid var(--border-color); color: var(--text-secondary); cursor: pointer; display: flex; align-items: center; gap: 0.3rem;" onmouseover="this.style.borderColor='var(--primary)'" onmouseout="this.style.borderColor='var(--border-color)'">
+                                    📥 Save Image
+                                </button>
+                            </div>
+                        </div>
                         <div style="position: relative; flex: 1; min-height: 200px;">
                             <canvas id="revenue-chart"></canvas>
                         </div>
@@ -567,6 +577,53 @@ var ezoicId = YOUR_EZOIC_ID;
             revenueChart.options.scales.y.grid.color = gridColor;
             revenueChart.options.scales.y.ticks.color = textColor;
             revenueChart.update();
+        }
+
+        // Copy shareable projection link pointing to ad-calculator.html
+        // We ensure it falls back gracefully if clipboard is not accessible.
+        function copyShareableLink() {
+            const views = viewsSlider.value;
+            const cpc = cpcSlider.value;
+            const url = `${window.location.origin}/ad-calculator.html?volume=${views}&cpc=${cpc}&name=Shared+Projection`;
+            
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(url).then(() => {
+                    showToast('Shareable link copied to clipboard!');
+                }).catch(err => {
+                    console.error('Failed to copy shareable link', err);
+                    fallbackCopyText(url);
+                });
+            } else {
+                fallbackCopyText(url);
+            }
+        }
+
+        function fallbackCopyText(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed"; // Avoid scrolling to bottom
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showToast('Shareable link copied to clipboard!');
+            } catch (err) {
+                console.error('Fallback copy failed', err);
+                showToast('Unable to copy. Link is: ' + text);
+            }
+            document.body.removeChild(textArea);
+        }
+
+        // Save Chart as PNG image
+        function downloadChartAsImage() {
+            const canvas = document.getElementById('revenue-chart');
+            if (!canvas) return;
+            const imageLink = document.createElement('a');
+            imageLink.download = `Ideaflow_Revenue_Projection_${Date.now()}.png`;
+            imageLink.href = canvas.toDataURL('image/png');
+            imageLink.click();
+            showToast('Chart downloaded as PNG!');
         }
 
         // Embed calculator widget functions
