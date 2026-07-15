@@ -30,16 +30,6 @@
     <!-- Google Search Console Verification -->
     <meta name="google-site-verification" content="FZyLiV0hZULnt7FGhEqJ3ISxDHOS3xOnyRKa8qw_Veo" />
     <link rel="stylesheet" href="styles.css">
-    <!-- Ezoic Privacy Scripts (Must Load First) -->
-    <script data-cfasync="false" src="https://cmp.gatekeeperconsent.com/min.js"></script>
-    <script data-cfasync="false" src="https://the.gatekeeperconsent.com/cmp.min.js"></script>
-    <!-- Ezoic Header Scripts -->
-    <script async src="//www.ezojs.com/ezoic/sa.min.js"></script>
-    <script>
-    window.ezstandalone = window.ezstandalone || {};
-    ezstandalone.cmd = ezstandalone.cmd || [];
-    </script>
-    <script src="//ezoicanalytics.com/analytics.js"></script>
     <!-- Google AdSense Site Verification Tag -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2210432744350818"
          crossorigin="anonymous"></script>
@@ -294,7 +284,7 @@
                             <span class="tool-category">Domains</span>
                             <span class="tool-rating">Best for Budgets</span>
                         </div>
-                        <a href="https://www.namecheap.com/" target="_blank" rel="noopener noreferrer nofollow" class="tool-cta">Register Domain</a>
+                        <a id="namecheap-cta" href="https://www.namecheap.com/" target="_blank" rel="noopener noreferrer nofollow" class="tool-cta">Register Domain</a>
                     </div>
                 </div>
                 <div class="tool-card">
@@ -305,7 +295,7 @@
                             <span class="tool-category">Outsourcing</span>
                             <span class="tool-rating">Highly Recommended</span>
                         </div>
-                        <a href="https://www.fiverr.com/" target="_blank" rel="noopener noreferrer nofollow" class="tool-cta">Hire Freelancers</a>
+                        <a id="fiverr-cta" href="https://www.fiverr.com/" target="_blank" rel="noopener noreferrer nofollow" class="tool-cta">Hire Freelancers</a>
                     </div>
                 </div>
             </div>
@@ -682,7 +672,7 @@
 
             <div class="guide-tabs">
                 <button type="button" class="tab-btn active-tab" onclick="switchTab('adsense', this)">Google AdSense</button>
-                <button type="button" class="tab-btn" onclick="switchTab('ezoic', this)">Ezoic, Payoneer &amp; Wise</button>
+                <button type="button" class="tab-btn" onclick="switchTab('affiliates', this)">Fiverr &amp; Namecheap</button>
                 <button type="button" class="tab-btn" onclick="switchTab('mediavine', this)">Direct Payment Buttons</button>
             </div>
 
@@ -726,32 +716,18 @@
                 </div>
             </div>
 
-            <!-- Ezoic Content (Alternative payouts) -->
-            <div class="tab-content" id="tab-content-ezoic">
+            <!-- Fiverr & Namecheap Affiliate Content -->
+            <div class="tab-content" id="tab-content-affiliates">
                 <p style="color: var(--text-secondary); margin-bottom: 1rem;">
-                    Ezoic is a display ad network that fully supports direct payouts to <strong>PayPal</strong>, <strong>Payoneer</strong>, and <strong>Wise (via international bank transfers)</strong>.
+                    Monetize your website creation, startup, and side hustle guides using Namecheap domains and Fiverr freelancing affiliate integrations.
                 </p>
-                <div style="background-color: #f8fafc; border: 1px solid var(--border-color); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; font-size: 0.9rem; color: var(--text-secondary);">
-                    <h4 style="color: var(--text-primary); margin-bottom: 0.5rem;">Alternative Payment Options on Ezoic:</h4>
-                    <ul style="margin-left: 1.25rem; list-style-type: disc;">
-                        <li style="margin-bottom: 0.5rem;"><strong>Payoneer</strong>: Link your Ezoic dashboard directly to Payoneer. It offers extremely low conversion fees and allows you to withdraw funds directly in your local currency.</li>
-                        <li style="margin-bottom: 0.5rem;"><strong>Wise (Direct Bank Transfer)</strong>: Enter the bank details provided by Wise (Multi-currency Account routing and account numbers) into the Bank Transfer field in Ezoic to receive low-fee transfers.</li>
-                        <li style="margin-bottom: 0.5rem;"><strong>Direct Deposit (ACH/Wire)</strong>: Standard payouts directly to your local bank account.</li>
+                <div style="background-color: var(--bg-surface); border: 1px solid var(--border-color); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; font-size: 0.9rem; color: var(--text-secondary);">
+                    <h4 style="color: var(--text-primary); margin-bottom: 0.5rem;">How to integrate your custom affiliate tracking links:</h4>
+                    <ul style="margin-left: 1.25rem; list-style-type: disc; line-height: 1.6;">
+                        <li style="margin-bottom: 0.5rem;"><strong>Fiverr Affiliate CPA</strong>: Get up to \$150 CPA per sale. Set up your Fiverr affiliate account, copy your CPA tracking link, and paste it into the simulator panel below.</li>
+                        <li style="margin-bottom: 0.5rem;"><strong>Namecheap Domains</strong>: Earn up to 35% on all domain registrations and hosting trials. Apply to the Namecheap brand inside Impact.com and paste your custom tracking link below.</li>
+                        <li style="margin-bottom: 0.5rem;"><strong>Site Integration</strong>: When you toggle **Enable Live Production Ads**, the buttons for Namecheap and Fiverr across the entire website will automatically switch to your custom tracking links.</li>
                     </ul>
-                </div>
-
-                <div class="code-container">
-                    <div class="code-header">
-                        <span class="code-lang">Ezoic Integration Tag</span>
-                        <button class="copy-btn" onclick="copyCode('ezoic-code')">
-                            Copy
-                        </button>
-                    </div>
-                    <pre><code id="ezoic-code">&lt;!-- Place Ezoic header placeholder script tag --&gt;
-&lt;script type="text/javascript"&gt;
-var ezoicId = YOUR_EZOIC_ID; 
-&lt;/script&gt;
-&lt;script type="text/javascript" src="//g.ezoic.net/ezoic/ezoic.js" async&gt;&lt;/script&gt;</code></pre>
                 </div>
             </div>
 
@@ -813,6 +789,14 @@ var ezoicId = YOUR_EZOIC_ID;
                     <div class="text-input-group">
                         <label for="amazon-affiliate">Amazon Associate Link (Referral URL)</label>
                         <input type="text" id="amazon-affiliate" value="https://www.amazon.in/s?k=productivity+planner&tag=ideaflowvault-21" placeholder="e.g. https://amazon.in/shop/YOUR_ID" oninput="updateProductionSnippets()">
+                    </div>
+                    <div class="text-input-group">
+                        <label for="namecheap-affiliate">Namecheap Affiliate Link (Impact URL)</label>
+                        <input type="text" id="namecheap-affiliate" placeholder="e.g. https://namecheap.pxf.io/c/xxxxxx/yyyyyy" oninput="updateProductionSnippets()">
+                    </div>
+                    <div class="text-input-group">
+                        <label for="fiverr-affiliate">Fiverr Affiliate Link (CPA URL)</label>
+                        <input type="text" id="fiverr-affiliate" placeholder="e.g. https://go.fiverr.com/visit/?bta=xxxxxx" oninput="updateProductionSnippets()">
                     </div>
                 </div>
             </div>
@@ -969,7 +953,7 @@ var ezoicId = YOUR_EZOIC_ID;
             <div class="footer-nav">
                 <h4>Resources</h4>
                 <a href="https://www.google.com/adsense" target="_blank" rel="noopener noreferrer nofollow">Google AdSense</a>
-                <a href="https://www.ezoic.com" target="_blank" rel="noopener noreferrer nofollow">Ezoic</a>
+                <a href="https://www.namecheap.com/" target="_blank" rel="noopener noreferrer nofollow">Namecheap Domains</a>
                 <a href="https://affiliate-program.amazon.in/" target="_blank" rel="noopener noreferrer nofollow">Amazon Associates</a>
                 <a href="https://www.hostinger.com/affiliates" target="_blank" rel="noopener noreferrer nofollow">Hostinger Affiliates</a>
             </div>
@@ -1039,12 +1023,23 @@ var ezoicId = YOUR_EZOIC_ID;
             cpcSlider.addEventListener('input', updateCalculator);
 
             loadNichesFromStorage();
+            loadAffiliateSettings();
             
             // Initialize Dynamic Chart
             initRevenueChart();
 
             updateCalculator();
             toggleProductionMode();
+
+            // Bind auto-save listeners to configuration fields
+            const configFields = ['publisher-id', 'adslot-id', 'hostinger-affiliate', 'linkwhisper-affiliate', 'amazon-affiliate', 'namecheap-affiliate', 'fiverr-affiliate'];
+            configFields.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.addEventListener('input', saveAffiliateSettings);
+                }
+            });
+            document.getElementById('production-toggle').addEventListener('change', saveAffiliateSettings);
 
             // Theme Toggler Switch Logic
             const themeToggleBtn = document.getElementById('theme-toggle');
@@ -1601,6 +1596,9 @@ var ezoicId = YOUR_EZOIC_ID;
             const bannerAd = document.getElementById('banner-ad-wrapper');
             const sidebarAd = document.getElementById('sidebar-ad-wrapper');
 
+            const namecheapBtn = document.getElementById('namecheap-cta');
+            const fiverrBtn = document.getElementById('fiverr-cta');
+
             if (productionModeActive) {
                 updateProductionSnippets();
                 showToast('Production Mode Active. Live redirects configured.');
@@ -1620,7 +1618,46 @@ var ezoicId = YOUR_EZOIC_ID;
                 sidebarAd.querySelector('.ad-click-hint').style.display = 'inline-block';
                 sidebarAd.querySelector('.ad-click-hint').textContent = 'Preview Ad Placement';
                 sidebarAd.querySelector('.ad-content').setAttribute('onclick', "handleAdClick(1.45, 'Link Whisper Bundle')");
+
+                if (namecheapBtn) namecheapBtn.setAttribute('href', 'https://www.namecheap.com/');
+                if (fiverrBtn) fiverrBtn.setAttribute('href', 'https://www.fiverr.com/');
+
                 showToast('Simulation Mode Active. Click ad blocks to preview layout behavior.');
+            }
+        }
+
+        // Save & Load Affiliate Settings
+        function saveAffiliateSettings() {
+            const settings = {
+                publisherId: document.getElementById('publisher-id').value.trim(),
+                adslotId: document.getElementById('adslot-id').value.trim(),
+                hostinger: document.getElementById('hostinger-affiliate').value.trim(),
+                linkwhisper: document.getElementById('linkwhisper-affiliate').value.trim(),
+                amazon: document.getElementById('amazon-affiliate').value.trim(),
+                namecheap: document.getElementById('namecheap-affiliate').value.trim(),
+                fiverr: document.getElementById('fiverr-affiliate').value.trim(),
+                productionMode: document.getElementById('production-toggle').checked
+            };
+            localStorage.setItem('ideaflow_affiliate_settings', JSON.stringify(settings));
+            updateProductionSnippets();
+        }
+
+        function loadAffiliateSettings() {
+            const raw = localStorage.getItem('ideaflow_affiliate_settings');
+            if (raw) {
+                try {
+                    const settings = JSON.parse(raw);
+                    document.getElementById('publisher-id').value = settings.publisherId || '';
+                    document.getElementById('adslot-id').value = settings.adslotId || '';
+                    document.getElementById('hostinger-affiliate').value = settings.hostinger || '';
+                    document.getElementById('linkwhisper-affiliate').value = settings.linkwhisper || 'https://linkwhisper.com/ref/4248/';
+                    document.getElementById('amazon-affiliate').value = settings.amazon || 'https://www.amazon.in/s?k=productivity+planner&tag=ideaflowvault-21';
+                    document.getElementById('namecheap-affiliate').value = settings.namecheap || '';
+                    document.getElementById('fiverr-affiliate').value = settings.fiverr || '';
+                    document.getElementById('production-toggle').checked = settings.productionMode !== false;
+                } catch (e) {
+                    console.error('Failed to parse affiliate settings', e);
+                }
             }
         }
 
@@ -1652,6 +1689,9 @@ var ezoicId = YOUR_EZOIC_ID;
                 const hostingerLink = document.getElementById('hostinger-affiliate').value.trim();
                 const linkwhisperLink = document.getElementById('linkwhisper-affiliate').value.trim();
                 const amazonLink = document.getElementById('amazon-affiliate').value.trim();
+                const namecheapLink = document.getElementById('namecheap-affiliate').value.trim();
+                const fiverrLink = document.getElementById('fiverr-affiliate').value.trim();
+                
                 const bannerAd = document.getElementById('banner-ad-wrapper');
                 const sidebarAd = document.getElementById('sidebar-ad-wrapper');
 
@@ -1694,6 +1734,17 @@ var ezoicId = YOUR_EZOIC_ID;
                     sidebarAd.querySelector('.ad-badge').textContent = 'Active Google AdSense tag';
                     sidebarAd.querySelector('.ad-click-hint').style.display = 'none';
                     sidebarAd.querySelector('.ad-content').removeAttribute('onclick');
+                }
+
+                // Dynamically overwrite tool grid buttons
+                const namecheapBtn = document.getElementById('namecheap-cta');
+                if (namecheapBtn) {
+                    namecheapBtn.setAttribute('href', namecheapLink || 'https://www.namecheap.com/');
+                }
+
+                const fiverrBtn = document.getElementById('fiverr-cta');
+                if (fiverrBtn) {
+                    fiverrBtn.setAttribute('href', fiverrLink || 'https://www.fiverr.com/');
                 }
             }
         }
