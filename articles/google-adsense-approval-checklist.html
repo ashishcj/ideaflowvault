@@ -190,67 +190,92 @@
                 <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">Go through each item before submitting your application. Every checkmark increases your approval probability significantly.</p>
 
                 <div style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.5rem; margin-bottom: 2rem;">
-                    <div style="display: grid; gap: 0.75rem;">
-                        <label style="display: flex; gap: 0.75rem; align-items: flex-start; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; cursor: pointer;">
-                            <input type="checkbox" style="margin-top: 0.35rem; accent-color: var(--primary); width: 18px; height: 18px; flex-shrink: 0;">
+                    <!-- Progress Bar Container -->
+                    <div style="margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1.2rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <span style="font-size: 0.95rem; font-weight: 700; color: var(--text-primary);">Audit Progress</span>
+                            <span id="checklist-progress-text" style="font-size: 0.9rem; font-weight: 700; color: var(--primary);">0 of 15 completed (0%)</span>
+                        </div>
+                        <div style="width: 100%; height: 10px; background: var(--border-color); border-radius: 5px; overflow: hidden; background-color: var(--bg-header);">
+                            <div id="checklist-progress-bar" style="width: 0%; height: 100%; background: var(--primary); transition: width 0.3s ease;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Checklist -->
+                    <div style="display: grid; gap: 0.85rem;">
+                        <label style="display: flex; gap: 0.75rem; align-items: flex-start; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; cursor: pointer; transition: all 0.2s;">
+                            <input type="checkbox" class="adsense-check" style="margin-top: 0.35rem; accent-color: var(--primary); width: 18px; height: 18px; flex-shrink: 0; cursor: pointer;">
                             <span><strong>1. Custom domain</strong> — Your site uses a registered domain (not a free subdomain)</span>
                         </label>
-                        <label style="display: flex; gap: 0.75rem; align-items: flex-start; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; cursor: pointer;">
-                            <input type="checkbox" style="margin-top: 0.35rem; accent-color: var(--primary); width: 18px; height: 18px; flex-shrink: 0;">
+                        <label style="display: flex; gap: 0.75rem; align-items: flex-start; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; cursor: pointer; transition: all 0.2s;">
+                            <input type="checkbox" class="adsense-check" style="margin-top: 0.35rem; accent-color: var(--primary); width: 18px; height: 18px; flex-shrink: 0; cursor: pointer;">
                             <span><strong>2. SSL certificate (HTTPS)</strong> — Your site loads securely with the padlock icon</span>
                         </label>
-                        <label style="display: flex; gap: 0.75rem; align-items: flex-start; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; cursor: pointer;">
-                            <input type="checkbox" style="margin-top: 0.35rem; accent-color: var(--primary); width: 18px; height: 18px; flex-shrink: 0;">
+                        <label style="display: flex; gap: 0.75rem; align-items: flex-start; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; cursor: pointer; transition: all 0.2s;">
+                            <input type="checkbox" class="adsense-check" style="margin-top: 0.35rem; accent-color: var(--primary); width: 18px; height: 18px; flex-shrink: 0; cursor: pointer;">
                             <span><strong>3. 15+ original articles</strong> — Each 1,000+ words, well-structured with headings</span>
                         </label>
-                        <label style="display: flex; gap: 0.75rem; align-items: flex-start; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; cursor: pointer;">
-                            <input type="checkbox" style="margin-top: 0.35rem; accent-color: var(--primary); width: 18px; height: 18px; flex-shrink: 0;">
+                        <label style="display: flex; gap: 0.75rem; align-items: flex-start; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; cursor: pointer; transition: all 0.2s;">
+                            <input type="checkbox" class="adsense-check" style="margin-top: 0.35rem; accent-color: var(--primary); width: 18px; height: 18px; flex-shrink: 0; cursor: pointer;">
                             <span><strong>4. About page</strong> — Explains who you are and what the site offers</span>
                         </label>
-                        <label style="display: flex; gap: 0.75rem; align-items: flex-start; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; cursor: pointer;">
-                            <input type="checkbox" style="margin-top: 0.35rem; accent-color: var(--primary); width: 18px; height: 18px; flex-shrink: 0;">
+                        <label style="display: flex; gap: 0.75rem; align-items: flex-start; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; cursor: pointer; transition: all 0.2s;">
+                            <input type="checkbox" class="adsense-check" style="margin-top: 0.35rem; accent-color: var(--primary); width: 18px; height: 18px; flex-shrink: 0; cursor: pointer;">
                             <span><strong>5. Contact page</strong> — Has a contact form or email address</span>
                         </label>
-                        <label style="display: flex; gap: 0.75rem; align-items: flex-start; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; cursor: pointer;">
-                            <input type="checkbox" style="margin-top: 0.35rem; accent-color: var(--primary); width: 18px; height: 18px; flex-shrink: 0;">
+                        <label style="display: flex; gap: 0.75rem; align-items: flex-start; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; cursor: pointer; transition: all 0.2s;">
+                            <input type="checkbox" class="adsense-check" style="margin-top: 0.35rem; accent-color: var(--primary); width: 18px; height: 18px; flex-shrink: 0; cursor: pointer;">
                             <span><strong>6. Privacy Policy</strong> — Mentions data collection, cookies, and Google AdSense</span>
                         </label>
-                        <label style="display: flex; gap: 0.75rem; align-items: flex-start; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; cursor: pointer;">
-                            <input type="checkbox" style="margin-top: 0.35rem; accent-color: var(--primary); width: 18px; height: 18px; flex-shrink: 0;">
+                        <label style="display: flex; gap: 0.75rem; align-items: flex-start; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; cursor: pointer; transition: all 0.2s;">
+                            <input type="checkbox" class="adsense-check" style="margin-top: 0.35rem; accent-color: var(--primary); width: 18px; height: 18px; flex-shrink: 0; cursor: pointer;">
                             <span><strong>7. Terms of Service</strong> — Basic usage terms and disclaimers</span>
                         </label>
-                        <label style="display: flex; gap: 0.75rem; align-items: flex-start; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; cursor: pointer;">
-                            <input type="checkbox" style="margin-top: 0.35rem; accent-color: var(--primary); width: 18px; height: 18px; flex-shrink: 0;">
+                        <label style="display: flex; gap: 0.75rem; align-items: flex-start; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; cursor: pointer; transition: all 0.2s;">
+                            <input type="checkbox" class="adsense-check" style="margin-top: 0.35rem; accent-color: var(--primary); width: 18px; height: 18px; flex-shrink: 0; cursor: pointer;">
                             <span><strong>8. Clear navigation</strong> — Header menu links to all major sections</span>
                         </label>
-                        <label style="display: flex; gap: 0.75rem; align-items: flex-start; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; cursor: pointer;">
-                            <input type="checkbox" style="margin-top: 0.35rem; accent-color: var(--primary); width: 18px; height: 18px; flex-shrink: 0;">
+                        <label style="display: flex; gap: 0.75rem; align-items: flex-start; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; cursor: pointer; transition: all 0.2s;">
+                            <input type="checkbox" class="adsense-check" style="margin-top: 0.35rem; accent-color: var(--primary); width: 18px; height: 18px; flex-shrink: 0; cursor: pointer;">
                             <span><strong>9. Mobile responsive</strong> — Site looks good on phones and tablets</span>
                         </label>
-                        <label style="display: flex; gap: 0.75rem; align-items: flex-start; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; cursor: pointer;">
-                            <input type="checkbox" style="margin-top: 0.35rem; accent-color: var(--primary); width: 18px; height: 18px; flex-shrink: 0;">
+                        <label style="display: flex; gap: 0.75rem; align-items: flex-start; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; cursor: pointer; transition: all 0.2s;">
+                            <input type="checkbox" class="adsense-check" style="margin-top: 0.35rem; accent-color: var(--primary); width: 18px; height: 18px; flex-shrink: 0; cursor: pointer;">
                             <span><strong>10. No copyright violations</strong> — All images are original or royalty-free</span>
                         </label>
-                        <label style="display: flex; gap: 0.75rem; align-items: flex-start; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; cursor: pointer;">
-                            <input type="checkbox" style="margin-top: 0.35rem; accent-color: var(--primary); width: 18px; height: 18px; flex-shrink: 0;">
+                        <label style="display: flex; gap: 0.75rem; align-items: flex-start; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; cursor: pointer; transition: all 0.2s;">
+                            <input type="checkbox" class="adsense-check" style="margin-top: 0.35rem; accent-color: var(--primary); width: 18px; height: 18px; flex-shrink: 0; cursor: pointer;">
                             <span><strong>11. No prohibited content</strong> — No adult, violent, gambling, or illegal material</span>
                         </label>
-                        <label style="display: flex; gap: 0.75rem; align-items: flex-start; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; cursor: pointer;">
-                            <input type="checkbox" style="margin-top: 0.35rem; accent-color: var(--primary); width: 18px; height: 18px; flex-shrink: 0;">
+                        <label style="display: flex; gap: 0.75rem; align-items: flex-start; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; cursor: pointer; transition: all 0.2s;">
+                            <input type="checkbox" class="adsense-check" style="margin-top: 0.35rem; accent-color: var(--primary); width: 18px; height: 18px; flex-shrink: 0; cursor: pointer;">
                             <span><strong>12. Site is 30+ days old</strong> — Domain was registered at least 1 month ago</span>
                         </label>
-                        <label style="display: flex; gap: 0.75rem; align-items: flex-start; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; cursor: pointer;">
-                            <input type="checkbox" style="margin-top: 0.35rem; accent-color: var(--primary); width: 18px; height: 18px; flex-shrink: 0;">
+                        <label style="display: flex; gap: 0.75rem; align-items: flex-start; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; cursor: pointer; transition: all 0.2s;">
+                            <input type="checkbox" class="adsense-check" style="margin-top: 0.35rem; accent-color: var(--primary); width: 18px; height: 18px; flex-shrink: 0; cursor: pointer;">
                             <span><strong>13. No excessive ads from other networks</strong> — Remove popups and intrusive banners</span>
                         </label>
-                        <label style="display: flex; gap: 0.75rem; align-items: flex-start; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; cursor: pointer;">
-                            <input type="checkbox" style="margin-top: 0.35rem; accent-color: var(--primary); width: 18px; height: 18px; flex-shrink: 0;">
+                        <label style="display: flex; gap: 0.75rem; align-items: flex-start; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; cursor: pointer; transition: all 0.2s;">
+                            <input type="checkbox" class="adsense-check" style="margin-top: 0.35rem; accent-color: var(--primary); width: 18px; height: 18px; flex-shrink: 0; cursor: pointer;">
                             <span><strong>14. Fast loading speed</strong> — Under 3 seconds on mobile (test on PageSpeed Insights)</span>
                         </label>
-                        <label style="display: flex; gap: 0.75rem; align-items: flex-start; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; cursor: pointer;">
-                            <input type="checkbox" style="margin-top: 0.35rem; accent-color: var(--primary); width: 18px; height: 18px; flex-shrink: 0;">
+                        <label style="display: flex; gap: 0.75rem; align-items: flex-start; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; cursor: pointer; transition: all 0.2s;">
+                            <input type="checkbox" class="adsense-check" style="margin-top: 0.35rem; accent-color: var(--primary); width: 18px; height: 18px; flex-shrink: 0; cursor: pointer;">
                             <span><strong>15. AdSense code installed correctly</strong> — Verification snippet placed in the &lt;head&gt; tag</span>
                         </label>
+                    </div>
+
+                    <!-- Celebration Panel -->
+                    <div id="celebration-card" style="display: none; background: rgba(16, 185, 129, 0.15); border: 2px solid #10b981; border-radius: var(--radius-sm); padding: 1.5rem; margin-top: 1.5rem; text-align: center; animation: fadeIn 0.4s ease;">
+                        <h4 style="color: #10b981; font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; margin-top: 0;">🎉 You are 100% Ready!</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem; line-height: 1.5;">Outstanding job. Your niche website satisfies all 15 audit checkpoints required by the Google AdSense review committee. Go ahead and submit your application with confidence!</p>
+                        <a href="https://google.com/adsense" target="_blank" rel="noopener noreferrer nofollow" style="display: inline-block; background-color: #10b981; color: white; border: none; padding: 0.5rem 1.2rem; border-radius: var(--radius-sm); font-size: 0.85rem; font-weight: 700; text-decoration: none; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Apply Now via Google AdSense &rarr;</a>
+                    </div>
+
+                    <!-- Action Controls -->
+                    <div style="display: flex; justify-content: space-between; margin-top: 1.5rem; border-top: 1px solid var(--border-color); padding-top: 1.2rem; flex-wrap: wrap; gap: 0.5rem;">
+                        <button id="reset-checklist-btn" style="background: transparent; border: 1.5px solid var(--border-color); color: var(--text-secondary); padding: 0.5rem 1rem; border-radius: var(--radius-sm); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s;">Reset Progress</button>
+                        <button id="export-checklist-btn" style="background: var(--primary); border: 1px solid var(--primary); color: white; padding: 0.5rem 1rem; border-radius: var(--radius-sm); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s;">Copy Remaining Tasks</button>
                     </div>
                 </div>
             </section>
@@ -504,6 +529,7 @@
     </footer>
 
     <script>
+        // Theme Toggle Setup
         const themeToggleBtn = document.getElementById('theme-toggle');
         if (themeToggleBtn) {
             themeToggleBtn.textContent = document.body.classList.contains('dark-theme') ? '☀️' : '🌙';
@@ -514,6 +540,110 @@
                 themeToggleBtn.textContent = isDark ? '☀️' : '🌙';
             });
         }
+
+        // Interactive Checklist Setup
+        window.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('.adsense-check');
+            const progressText = document.getElementById('checklist-progress-text');
+            const progressBar = document.getElementById('checklist-progress-bar');
+            const resetBtn = document.getElementById('reset-checklist-btn');
+            const exportBtn = document.getElementById('export-checklist-btn');
+            const celebrationCard = document.getElementById('celebration-card');
+
+            if (!checkboxes.length || !progressText || !progressBar) return;
+
+            function updateProgress() {
+                let checkedCount = 0;
+                const checkedStates = {};
+                
+                checkboxes.forEach((cb, idx) => {
+                    checkedStates[`check-${idx}`] = cb.checked;
+                    const label = cb.parentElement;
+                    const labelSpan = label.querySelector('span');
+                    
+                    if (cb.checked) {
+                        checkedCount++;
+                        label.style.opacity = '0.65';
+                        if (labelSpan) labelSpan.style.textDecoration = 'line-through';
+                    } else {
+                        label.style.opacity = '1';
+                        if (labelSpan) labelSpan.style.textDecoration = 'none';
+                    }
+                });
+
+                localStorage.setItem('adsense-checklist-state', JSON.stringify(checkedStates));
+
+                const total = checkboxes.length;
+                const pct = Math.round((checkedCount / total) * 100);
+                progressText.textContent = `${checkedCount} of ${total} completed (${pct}%)`;
+                progressBar.style.width = `${pct}%`;
+
+                if (checkedCount === total) {
+                    celebrationCard.style.display = 'block';
+                } else {
+                    celebrationCard.style.display = 'none';
+                }
+            }
+
+            // Bind Event Listeners
+            checkboxes.forEach(cb => {
+                cb.addEventListener('change', updateProgress);
+            });
+
+            // Restore Saved State
+            const savedState = localStorage.getItem('adsense-checklist-state');
+            if (savedState) {
+                try {
+                    const checkedStates = JSON.parse(savedState);
+                    checkboxes.forEach((cb, idx) => {
+                        if (checkedStates[`check-${idx}`]) {
+                            cb.checked = true;
+                        }
+                    });
+                } catch(e) {
+                    console.error('Error parsing checklist state:', e);
+                }
+            }
+            updateProgress();
+
+            // Reset Button
+            if (resetBtn) {
+                resetBtn.addEventListener('click', () => {
+                    if (confirm('Are you sure you want to clear your checklist progress?')) {
+                        checkboxes.forEach(cb => {
+                            cb.checked = false;
+                        });
+                        updateProgress();
+                    }
+                });
+            }
+
+            // Export Remaining Button
+            if (exportBtn) {
+                exportBtn.addEventListener('click', () => {
+                    const remaining = [];
+                    checkboxes.forEach((cb) => {
+                        if (!cb.checked) {
+                            const text = cb.parentElement.querySelector('span').innerText;
+                            remaining.push(`- [ ] ${text}`);
+                        }
+                    });
+
+                    if (remaining.length === 0) {
+                        alert('Congratulations! All tasks are completed. You are ready for Google AdSense!');
+                        return;
+                    }
+
+                    const clipboardText = remaining.join('\n');
+                    navigator.clipboard.writeText(clipboardText).then(() => {
+                        alert('Remaining tasks copied to clipboard as markdown!');
+                    }).catch(() => {
+                        // Fallback text output
+                        alert('Could not copy automatically. Here are your remaining tasks:\n\n' + clipboardText);
+                    });
+                });
+            }
+        });
     </script>
 </body>
 </html>
