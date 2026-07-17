@@ -190,6 +190,59 @@
             }
         }
     </style>
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ideaflowvault.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://ideaflowvault.com/articles/" },
+        { "@type": "ListItem", "position": 3, "name": "How to Monetize a Niche Website", "item": "https://ideaflowvault.com/articles/how-to-monetize-niche-website.html" }
+      ]
+    }
+    </script>
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much can a niche website earn per month?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A niche website with 50,000 monthly pageviews and a $10 RPM can earn $500/month. High-CPC niches like finance or SaaS can push RPMs to $25-50, earning $1,250-2,500 for the same traffic."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which is better for a new blog: AdSense or Ezoic?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Start with Google AdSense (no traffic minimum, instant approval). Once you reach 1,000+ monthly visitors, switch to Ezoic for AI-optimized ad placements that typically increase revenue 50-150%."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How many articles do I need before monetizing?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Wait until you have 10-15 high-quality articles of 1,000+ words before applying for Google AdSense. This signals to reviewers that your site offers genuine value."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a good RPM for a niche website?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A good RPM depends on your niche: finance and insurance sites can hit $25-50+, tech sites $8-15, and entertainment sites $2-5. Always target high-CPC niches to maximize RPM."
+          }
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <script>
@@ -211,7 +264,7 @@
                     <li><a href="../ad-calculator.html">Ad Calculator</a></li>
                     <li><a href="../#tools">Recommended Tools</a></li>
                     <li><a href="../ad-calculator.html#setup">Ad Setup &amp; Payouts</a></li>
-                    <li><a href="../#blog">Guides</a></li>
+                    <li><a href="index.html">Guides</a></li>
                 </ul>
             </nav>
             <div style="display: flex; align-items: center; gap: 0.5rem;">
@@ -226,7 +279,7 @@
         <div class="breadcrumb-container">
             <a href="../">Home</a>
             <span class="breadcrumb-sep">›</span>
-            <a href="../#blog">Guides</a>
+            <a href="index.html">Guides</a>
             <span class="breadcrumb-sep">›</span>
             <span class="breadcrumb-current">Monetize a Niche Website</span>
         </div>
@@ -253,12 +306,12 @@
             <p>To attract traffic that advertisers are willing to pay for, you need to understand two key metrics:</p>
             <ul>
                 <li><strong>Search Volume:</strong> The average number of times people search for your topic on Google every month. Aim for a starting niche with a total search volume of 20,000 to 100,000 visits per month.</li>
-                <li><strong>Cost Per Click (CPC):</strong> The amount advertisers pay when someone clicks on their ad in Google. High-paying niches (like finance, real estate, law, and business software) often have CPCs over $2.00, while general topics (like memes or news) have CPCs below $0.15.</li>
+                <li><strong>Cost Per Click (CPC):</strong> The amount advertisers pay when someone clicks on their ad in Google. <a href="high-paying-blog-niches.html" style="color: var(--primary); font-weight: 600;">High-paying niches</a> (like finance, real estate, law, and business software) often have CPCs over $2.00, while general topics (like memes or news) have CPCs below $0.15.</li>
             </ul>
 
             <div class="highlight-box">
                 <h4>📊 The Math of Website Revenue</h4>
-                <p>If your website gets 50,000 views per month and has a Page RPM (Revenue per 1,000 views) of $10, you will make $500/month. If your RPM is $2 (due to low CPC content), you'll only make $100/month for the exact same amount of traffic. Always target high-value niches!</p>
+                <p>If your website gets 50,000 views per month and has a Page RPM (Revenue per 1,000 views) of $10, you will make $500/month (learn how <a href="understanding-ad-metrics-rpm-cpm-cpc.html" style="color: var(--primary); font-weight: 600;">RPM, CPC, and CTR work together</a>). If your RPM is $2 (due to low CPC content), you'll only make $100/month for the exact same amount of traffic. Always target <a href="low-competition-high-cpc-niches.html" style="color: var(--primary); font-weight: 600;">high-value niches</a>!</p>
             </div>
 
             <h2>Step 2: Calculate Your Earnings Projections</h2>
@@ -279,7 +332,7 @@
             <p>Once your website is launched and has 10-15 high-quality content articles, it is time to turn on display ads:</p>
             <ol>
                 <li><strong>Google AdSense:</strong> The industry standard for beginner sites. (Before applying, make sure to read our detailed <a href="google-adsense-approval-checklist.html" style="color: var(--primary); font-weight: 700;">AdSense Approval Checklist</a> to avoid common rejections). It has no traffic minimums and is easy to set up. Paste Google's auto-ad verification code in your HTML header and let Google place ads.</li>
-                <li><strong>Ezoic:</strong> Once your site starts getting regular visitors, apply for Ezoic. Ezoic is an AI-powered ad optimizer that automatically tests ad placements and sizes. Publishers who switch from AdSense to Ezoic typically experience a 50% to 150% increase in monthly revenue.</li>
+                <li><strong>Ezoic:</strong> Once your site starts getting regular visitors, apply for Ezoic. Ezoic is an AI-powered ad optimizer that automatically tests ad placements and sizes. Publishers who switch from AdSense to Ezoic typically experience a 50% to 150% increase in monthly revenue (see our full <a href="adsense-vs-ezoic-comparison.html" style="color: var(--primary); font-weight: 600;">AdSense vs Ezoic comparison</a> for benchmark data).</li>
             </ol>
 
             <p>Start small, stay focused on one topic, and always let data guide your content strategy. Happy building!</p>

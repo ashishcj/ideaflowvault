@@ -72,6 +72,59 @@
         .metric-table tr:nth-child(even) { background: var(--bg-surface); }
         @media (max-width: 768px) { .article-title { font-size: 2.2rem; } }
     </style>
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ideaflowvault.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://ideaflowvault.com/articles/" },
+        { "@type": "ListItem", "position": 3, "name": "Understanding Ad Metrics (RPM, CPM, CPC)", "item": "https://ideaflowvault.com/articles/understanding-ad-metrics-rpm-cpm-cpc.html" }
+      ]
+    }
+    </script>
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the difference between RPM and CPM?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "RPM (Revenue Per Mille) tracks a publisher's total earnings per 1,000 pageviews, while CPM (Cost Per Mille) tracks an advertiser's cost per 1,000 ad impressions. Since one page can show multiple ads, page RPM is usually higher than a single ad's CPM."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a good RPM for a blog?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A good RPM depends on your niche: finance and insurance sites can hit $25-50+, tech sites $8-15, and entertainment sites $2-5. Anything above $10 is considered strong for most content niches."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is CPC calculated in Google AdSense?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "CPC (Cost Per Click) is calculated by dividing total revenue by total clicks. For example, if an ad is clicked 20 times and generates $10 in earnings, your average CPC is $0.50 per click."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a good CTR for display ads?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A standard website CTR for display ads typically sits between 1.0% and 3.0%. A CTR above 3% is considered excellent, while anything below 0.5% may indicate poorly placed or irrelevant ads."
+          }
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <script>
@@ -88,7 +141,7 @@
                 <li><a href="../ad-calculator.html">Ad Calculator</a></li>
                 <li><a href="../#tools">Recommended Tools</a></li>
                 <li><a href="../ad-calculator.html#setup">Ad Setup &amp; Payouts</a></li>
-                <li><a href="../#blog">Guides</a></li>
+                <li><a href="index.html">Guides</a></li>
             </ul></nav>
             <div style="display: flex; align-items: center; gap: 0.5rem;">
                 <button type="button" class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
@@ -108,7 +161,7 @@
         </div>
 
         <div class="article-body">
-            <p>If you've recently looked at monetization options for your blog or niche website, you've likely run into a wall of abbreviations: <strong>RPM</strong>, <strong>CPM</strong>, <strong>CPC</strong>, and <strong>CTR</strong>. These acronyms represent the fundamental building blocks of digital publishing and online advertising.</p>
+            <p>If you've recently looked at <a href="how-to-monetize-niche-website.html" style="color: var(--primary); font-weight: 600;">monetization options</a> for your blog or niche website, you've likely run into a wall of abbreviations: <strong>RPM</strong>, <strong>CPM</strong>, <strong>CPC</strong>, and <strong>CTR</strong>. These acronyms represent the fundamental building blocks of digital publishing and online advertising.</p>
 
             <p>Understanding these terms isn't just about passing a vocabulary test. It is about understanding how to measure your website's financial health, diagnose underperforming pages, and project future earnings. Without this knowledge, you are flying blind.</p>
 
@@ -138,7 +191,7 @@
 
             <h2>3. CPC (Cost Per Click)</h2>
             <p><strong>CPC</strong> is the amount of money you earn (or an advertiser pays) every time a user clicks on an ad displayed on your page.</p>
-            <p>If you monetize with a network like Google AdSense, a significant portion of your earnings will be based on CPC. Different niches have wildly different CPC benchmarks. A personal finance blog might see CPCs of $2.50 to $8.00+, whereas a recipe blog might see CPCs of $0.15 to $0.50.</p>
+            <p>If you monetize with a network like Google AdSense, a significant portion of your earnings will be based on CPC. Different niches have wildly different CPC benchmarks — see our list of <a href="high-paying-blog-niches.html" style="color: var(--primary); font-weight: 600;">high-paying blog niches</a> for real-world CPC data. A personal finance blog might see CPCs of $2.50 to $8.00+, whereas a recipe blog might see CPCs of $0.15 to $0.50.</p>
 
             <div class="formula-card">
                 CPC = Total Revenue / Total Clicks
@@ -209,8 +262,8 @@
             <p>To make more money, you either need more traffic (views) or you need to optimize your layout to increase one of these key variables:</p>
             <ul>
                 <li><strong>To Increase CTR:</strong> Experiment with ad placement. Placing ads "above the fold" (visible without scrolling) or within the content naturally increases views and clicks. Avoid cluttering pages with too many ads, as users will ignore them.</li>
-                <li><strong>To Increase CPC:</strong> Write about topics with high advertiser demand. Advertisers pay more to display ads next to purchase-intent content (e.g. SaaS reviews, insurance, financial planning).</li>
-                <li><strong>To Increase RPM:</strong> Focus on drawing search traffic from high-paying locations (like the US, UK, and Canada) and internal linking. Keep readers on your site longer so they browse multiple pages per session.</li>
+                <li><strong>To Increase CPC:</strong> Write about topics with high advertiser demand (learn <a href="how-to-increase-adsense-cpc.html" style="color: var(--primary); font-weight: 600;">how to increase your AdSense CPC</a> with the right topics). Advertisers pay more to display ads next to purchase-intent content (e.g. SaaS reviews, insurance, financial planning).</li>
+                <li><strong>To Increase RPM:</strong> Focus on drawing search traffic from high-paying locations (like the US, UK, and Canada), internal linking, and eventually <a href="adsense-vs-ezoic-comparison.html" style="color: var(--primary); font-weight: 600;">upgrading from AdSense to Ezoic</a> for better fill rates. Keep readers on your site longer so they browse multiple pages per session.</li>
             </ul>
 
             <div class="inline-cta-card">
@@ -266,7 +319,7 @@
                 <a href="../niche-research.html#vault">Research Vault</a>
                 <a href="../ad-calculator.html">Ad Calculator</a>
                 <a href="../index.html#setup">Ad Setup</a>
-                <a href="../index.html#blog">Guides</a>
+                <a href="index.html">Guides</a>
             </div>
             <div class="footer-nav">
                 <h4>Resources</h4>

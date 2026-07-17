@@ -87,6 +87,18 @@
       ]
     }
     </script>
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ideaflowvault.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://ideaflowvault.com/articles/" },
+        { "@type": "ListItem", "position": 3, "name": "How to Increase AdSense CPC", "item": "https://ideaflowvault.com/articles/how-to-increase-adsense-cpc.html" }
+      ]
+    }
+    </script>
 </head>
 <body>
     <script>
@@ -105,7 +117,7 @@
                 <a href="../index.html">Home</a>
                 <a href="../niche-research.html">Niche Directory</a>
                 <a href="../ad-calculator.html">Ad Calculator</a>
-                <a href="../index.html#blog">Guides</a>
+                <a href="index.html">Guides</a>
             </nav>
             <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light theme">🌙</button>
         </div>
@@ -116,13 +128,13 @@
 
         <article>
             <div style="margin-bottom: 2rem;">
-                <a href="../index.html#blog" style="color: var(--primary); text-decoration: none; font-size: 0.9rem; font-weight: 600;">← Back to All Guides</a>
+                <a href="index.html" style="color: var(--primary); text-decoration: none; font-size: 0.9rem; font-weight: 600;">← Back to All Guides</a>
             </div>
 
             <header style="margin-bottom: 2.5rem;">
                 <span style="display: inline-block; background: var(--primary-glow); color: var(--primary); padding: 0.35rem 0.85rem; border-radius: 20px; font-size: 0.8rem; font-weight: 700; margin-bottom: 1rem; border: 1px solid var(--primary);">CPC Optimization</span>
                 <h1 style="font-size: 2.2rem; line-height: 1.25; color: var(--text-primary); margin-bottom: 1rem;">How to Increase Google AdSense CPC: 7 Proven Strategies</h1>
-                <p style="color: var(--text-secondary); font-size: 1.05rem; line-height: 1.7; margin-bottom: 1rem;">Are you getting thousands of visitors but only earning pennies from your Google AdSense clicks? The culprit is likely a low Cost-Per-Click (CPC). This detailed optimization guide reveals 7 developer-tested strategies to boost your AdSense CPC, filter out cheap ads, and maximize your blog revenue.</p>
+                <p style="color: var(--text-secondary); font-size: 1.05rem; line-height: 1.7; margin-bottom: 1rem;">Are you getting thousands of visitors but only earning pennies from your Google AdSense clicks (assuming you've already cleared the <a href="google-adsense-approval-checklist.html" style="color: var(--primary); font-weight: 600;">AdSense approval process</a>)? The culprit is likely a low Cost-Per-Click (CPC). This detailed optimization guide reveals 7 developer-tested strategies to boost your AdSense CPC, filter out cheap ads, and maximize your blog revenue.</p>
                 <div style="display: flex; gap: 1.5rem; color: var(--text-muted); font-size: 0.85rem;">
                     <span>By Ashish Divakar</span>
                     <span>July 15, 2026</span>
@@ -148,18 +160,18 @@
             <!-- Section: Understanding CPC -->
             <section id="understanding-cpc" style="margin-bottom: 2.5rem;">
                 <h2 style="font-size: 1.6rem; color: var(--text-primary); margin-bottom: 1rem; padding-top: 1rem;">Understanding AdSense CPC Math</h2>
-                <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem;">Cost-Per-Click (CPC) is the amount an advertiser pays you every time a user clicks on an ad displayed on your page. AdSense revenue is determined by the combination of your traffic size, Click-Through Rate (CTR), and CPC:</p>
+                <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem;">Cost-Per-Click (CPC) is the amount an advertiser pays you every time a user clicks on an ad displayed on your page. AdSense revenue is determined by the combination of your traffic size, Click-Through Rate (CTR), and CPC (learn how these <a href="understanding-ad-metrics-rpm-cpm-cpc.html" style="color: var(--primary); font-weight: 600;">ad metrics work together</a>):</p>
                 <div style="background: var(--bg-surface); border: 1px solid var(--border-color); padding: 1rem 1.5rem; border-radius: var(--radius-sm); margin-bottom: 1.5rem; font-family: monospace; text-align: center; color: var(--text-primary);">
                     Earnings = Pageviews &times; CTR (%) &times; CPC ($)
                 </div>
-                <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem;">Many publishers focus exclusively on growing pageviews, ignoring that increasing their CPC from $0.10 to $0.40 will immediately **quadruple** their earnings with the exact same level of traffic.</p>
+                <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem;">Many publishers focus exclusively on growing pageviews, ignoring that increasing their CPC from $0.10 to $0.40 will immediately **quadruple** their earnings with the exact same level of traffic — and <a href="adsense-vs-ezoic-comparison.html" style="color: var(--primary); font-weight: 600;">switching from AdSense to Ezoic</a> can push CPC even higher through header bidding.</p>
             </section>
 
             <!-- Section 1: Niche Focus -->
             <section id="niche-focus" style="margin-bottom: 2.5rem;">
                 <h2 style="font-size: 1.6rem; color: var(--text-primary); margin-bottom: 1rem; padding-top: 1rem;">1. Focus on High-CPC Seed Keywords</h2>
-                <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem;">Google AdSense is a contextual ad network. This means the bidding value of the ads displayed on your page is heavily driven by the keywords contained in your article text. If you write about *\"free desktop wallpapers\"*, you will get low-bid ads. If you write about *\"best cloud hosting providers for small business\"*, you will trigger high-value ads.</p>
-                <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem;">Before writing, target keywords that have a high commercial intent. Advertisers are willing to bid higher because a click on these topics has a high probability of converting into a paying customer.</p>
+                <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem;">Google AdSense is a contextual ad network. This means the bidding value of the ads displayed on your page is heavily driven by the keywords contained in your article text (which is why <a href="high-paying-blog-niches.html" style="color: var(--primary); font-weight: 600;">high-paying blog niches</a> earn so much more). If you write about *\"free desktop wallpapers\"*, you will get low-bid ads. If you write about *\"best cloud hosting providers for small business\"*, you will trigger high-value ads.</p>
+                <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem;">Before writing, target keywords that have a high commercial intent — browse our list of <a href="low-competition-high-cpc-niches.html" style="color: var(--primary); font-weight: 600;">low-competition, high-CPC niches</a> for inspiration. Advertisers are willing to bid higher because a click on these topics has a high probability of converting into a paying customer.</p>
             </section>
 
             <!-- Section 2: Tier Traffic -->
