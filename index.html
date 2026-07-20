@@ -103,7 +103,7 @@
             <a href="index.html" class="logo">
                 <img src="logo.png" alt="Ideaflow Vault" class="logo-icon"> Ideaflow Vault
             </a>
-            <nav>
+            <nav id="main-nav">
                 <ul>
                     <li><a href="niche-research.html">Niche Directory</a></li>
                     <li><a href="niche-research.html#vault">Research Vault</a></li>
@@ -113,8 +113,10 @@
                     <li><a href="articles/index.html">Guides</a></li>
                 </ul>
             </nav>
+            <div class="mobile-nav-overlay" id="nav-overlay"></div>
             <div style="display: flex; align-items: center; gap: 0.5rem;">
                 <button type="button" class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+                <button type="button" class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Open Menu">☰</button>
                 <a href="niche-research.html#vault" class="cta-button">Log New Idea</a>
             </div>
         </div>
@@ -142,21 +144,21 @@
                     </div>
                     <div class="stat-card">
                         <div class="stat-val" id="stats-revenue-count">$0.00</div>
-                        <div class="stat-lbl">Simulated Earnings</div>
+                        <div class="stat-lbl">Projected Revenue</div>
                     </div>
                 </div>
             </div>
             
-            <!-- Interactive Live Earnings Widget -->
+            <!-- Revenue Projection Demo Widget -->
             <div class="hero-widget">
                 <div class="widget-header">
-                    <span class="widget-title">Odometer Traffic Tracker</span>
+                    <span class="widget-title">Revenue Projection Demo</span>
                     <div class="live-indicator">
                         <span class="live-dot"></span> Active
                     </div>
                 </div>
                 <div class="earnings-live-card">
-                    <div class="live-earn-label">Simulated Ad Income</div>
+                    <div class="live-earn-label">Estimated Monthly Revenue</div>
                     <div class="live-earn-amount" id="live-earnings-counter">$0.00</div>
                     <div class="live-earn-stats">
                         <div class="live-stat">
@@ -174,7 +176,7 @@
                     </div>
                 </div>
                 <p style="font-size: 0.8rem; color: var(--text-secondary); text-align: center;">
-                    Display ad layout slots. Click mock ads below to preview layout behavior and view count updates.
+                    This demo shows how ad revenue is calculated based on views, CTR, and CPC. Use the calculator below to customize.
                 </p>
             </div>
         </section>
@@ -301,15 +303,7 @@
             </div>
         </section>
 
-        <!-- Simulated Banner Ad -->
-        <div class="ad-slot-wrapper" id="banner-ad-wrapper">
-            <div class="ad-badge">Ad Layout Placeholder</div>
-            <div class="ad-content" onclick="handleAdClick(0.85, 'Hostinger Hosting Plan')">
-                <h4 style="color: var(--secondary); margin-bottom: 0.25rem;">Launch Your Niche Site with Hostinger</h4>
-                <p style="margin-bottom: 0.5rem; font-size: 0.85rem;">Get high-speed cloud hosting, free SSL, and a custom domain name starting at only $2.99/mo. 1-click install.</p>
-                <div class="ad-click-hint">Preview Ad Placement</div>
-            </div>
-        </div>
+
 
         <!-- Curated Niches Section -->
         <section id="discover">
@@ -652,15 +646,7 @@
             </div>
         </div>
 
-        <!-- Simulated Sidebar Ad -->
-        <div class="ad-slot-wrapper" id="sidebar-ad-wrapper">
-            <div class="ad-badge">Ad Layout Placeholder</div>
-            <div class="ad-content" onclick="handleAdClick(1.45, 'Link Whisper Bundle')">
-                <h4 style="color: var(--warning); margin-bottom: 0.25rem;">Automated WordPress Internal Linking</h4>
-                <p style="margin-bottom: 0.5rem; font-size: 0.85rem;">Rank higher by cleaning up site architecture. Link Whisper automatically builds internal anchor text links in seconds.</p>
-                <div class="ad-click-hint">Preview Ad Placement</div>
-            </div>
-        </div>
+
 
         <!-- Ad Setup Guide & Panel -->
         <section id="setup">
@@ -988,18 +974,7 @@
 
     </main>
 
-    <!-- Sticky Earnings Footer Bar -->
-    <div class="sticky-earnings-bar" id="sticky-revenue-bar">
-        <div>
-            <div class="sticky-lbl">Hub Revenue Engine</div>
-            <div class="sticky-val" id="sticky-earnings-val">$0.00</div>
-        </div>
-        <div class="sticky-stats">
-            <span>Views: <strong id="sticky-views-val">0</strong></span>
-            <span>Clicks: <strong id="sticky-clicks-val">0</strong></span>
-            <span>Est. CTR: <strong id="sticky-ctr-val">0.00%</strong></span>
-        </div>
-    </div>
+
 
     <!-- Footer -->
     <footer>
@@ -1060,11 +1035,6 @@
         const statsSavedEl = document.getElementById('stats-vault-count');
         const statsRevenueEl = document.getElementById('stats-revenue-count');
 
-        const stickyRevenueBar = document.getElementById('sticky-revenue-bar');
-        const stickyEarningsVal = document.getElementById('sticky-earnings-val');
-        const stickyViewsVal = document.getElementById('sticky-views-val');
-        const stickyClicksVal = document.getElementById('sticky-clicks-val');
-        const stickyCtrVal = document.getElementById('sticky-ctr-val');
 
         // Calculator Inputs
         const viewsSlider = document.getElementById('views-slider');
@@ -1123,28 +1093,18 @@
                 });
             }
 
-            // Odometer background traffic simulation
+            // Revenue projection demo — updates widget based on calculator slider values
             setInterval(() => {
-                if (!productionModeActive) {
-                    const newViews = Math.floor(Math.random() * 3) + 1;
-                    totalViews += newViews;
-
-                    const currentCtrPercent = parseFloat(ctrSlider.value);
-                    const clickProbability = (currentCtrPercent / 100) * newViews;
-                    
-                    if (Math.random() < clickProbability) {
-                        totalClicks++;
-                        const currentCpcVal = parseFloat(cpcSlider.value);
-                        totalEarnings += currentCpcVal;
-                        showStickyBarNotification();
-                    }
-
-                    // Base CPM views micro-earnings
-                    const cpmBaseEarnings = newViews * 0.0025;
-                    totalEarnings += cpmBaseEarnings;
-
-                    updateStatsUI();
-                }
+                const views = parseInt(viewsSlider.value);
+                const ctr = parseFloat(ctrSlider.value);
+                const cpc = parseFloat(cpcSlider.value);
+                const dailyViews = Math.round(views / 30);
+                const dailyClicks = Math.round(dailyViews * (ctr / 100));
+                const dailyEarnings = dailyClicks * cpc;
+                totalViews = dailyViews;
+                totalClicks = dailyClicks;
+                totalEarnings = dailyEarnings;
+                updateStatsUI();
             }, 3000);
         });
 
@@ -1153,47 +1113,14 @@
             return '$' + amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         }
 
-        // Show/Hide sticky footer bar when active clicks happen
-        function showStickyBarNotification() {
-            stickyRevenueBar.classList.add('visible');
-        }
-
         // Update stats displays
         function updateStatsUI() {
             liveEarningsEl.textContent = formatCurrency(totalEarnings);
             liveViewsEl.textContent = totalViews.toLocaleString();
             liveClicksEl.textContent = totalClicks.toLocaleString();
             statsRevenueEl.textContent = formatCurrency(totalEarnings);
-            
             const calculatedCtr = totalViews > 0 ? (totalClicks / totalViews) * 100 : 0.00;
             liveCtrEl.textContent = calculatedCtr.toFixed(2) + '%';
-
-            stickyEarningsVal.textContent = formatCurrency(totalEarnings);
-            stickyViewsVal.textContent = totalViews.toLocaleString();
-            stickyClicksVal.textContent = totalClicks.toLocaleString();
-            stickyCtrVal.textContent = calculatedCtr.toFixed(2) + '%';
-
-            if (totalEarnings > 0) {
-                stickyRevenueBar.classList.add('visible');
-            }
-        }
-
-        // Click handler for mock ads
-        function handleAdClick(amount, productName) {
-            if (productionModeActive) return;
-            
-            totalClicks++;
-            totalEarnings += amount;
-            
-            const counterWidget = document.querySelector('.hero-widget');
-            counterWidget.style.transform = 'scale(1.05)';
-            setTimeout(() => {
-                counterWidget.style.transform = 'scale(1)';
-            }, 200);
-
-            updateStatsUI();
-            showStickyBarNotification();
-            showToast(`Simulated ad click registered: +${formatCurrency(amount)}`);
         }
 
         // Calculator updates
@@ -1672,26 +1599,10 @@
                 updateProductionSnippets();
                 showToast('Production Mode Active. Live redirects configured.');
             } else {
-                bannerAd.style.borderColor = '';
-                bannerAd.style.background = '';
-                bannerAd.querySelector('.ad-badge').textContent = 'Ad Layout Placeholder';
-                bannerAd.querySelector('.ad-click-hint').style.display = 'inline-block';
-                bannerAd.querySelector('.ad-click-hint').textContent = 'Preview Ad Placement';
-                bannerAd.querySelector('.ad-content').setAttribute('onclick', "handleAdClick(0.85, 'Hostinger Hosting Plan')");
-
-                sidebarAd.style.borderColor = '';
-                sidebarAd.style.background = '';
-                sidebarAd.querySelector('.ad-badge').textContent = 'Ad Layout Placeholder';
-                sidebarAd.querySelector('h4').textContent = 'Automated WordPress Internal Linking';
-                sidebarAd.querySelector('p').textContent = 'Rank higher by cleaning up site architecture. Link Whisper automatically builds internal anchor text links in seconds.';
-                sidebarAd.querySelector('.ad-click-hint').style.display = 'inline-block';
-                sidebarAd.querySelector('.ad-click-hint').textContent = 'Preview Ad Placement';
-                sidebarAd.querySelector('.ad-content').setAttribute('onclick', "handleAdClick(1.45, 'Link Whisper Bundle')");
-
                 if (namecheapBtn) namecheapBtn.setAttribute('href', 'http://em.impact.com/ls/click?upn=u001.iUNywRU2PIdBuqR2OhDBvLaVtB9Cc2fMkxbz-2FjUy5qgG8yU-2FxuXSAlktmaTl0Hu4ReLMY9J-2B1dyMwX8FwUHn-2BA-3D-3D8cLp_o-2BP8qOCZ5s5G2vwG8D0FI-2Fjsy5Le0JzCTpDebZwPbsVpl5PTBt9TqrWI0sQniNG2j4D4s5FWK0Jne-2B8wPCRIwqqsWOjDS48u4kc9luYj8bt18Er4BqijXYZWGTAZHpTlR5y4FtBs4rpmXAwPpX-2FBYyD9grcocG6AOkn8f-2FW00CX7j3I-2F0sGuqisWAwabaeiiK0nQcgDOomPDudiNinvKB9hKgOibhVaIqgBzH0U2bjCgfufcl36XoJ-2FuOHkKvHy2nSUmCKZJwlzhPqvO2OKWLbdKJmBPEK6x9zQIhmRO6i9KwHehVMAnOOX8t07-2F8MEA');
                 if (fiverrBtn) fiverrBtn.setAttribute('href', 'https://ablink.affiliates.fiverr.com/ls/click?upn=u001.TWJuC2VN4aam7dFLwSK6BKLOQRlV85CGMb1w2E5g1q68QsFB4rAjuMGZezJbPXiSzoqTl4KOW-2FkjXP8bNuwAfiUAy9LBuY-2FxwPnlgGC9oMFdFMA-2F-2FUwpzl-2BpYEkNhPfuRaRrE766qxeTtyqW-2F5A7lbMF-2BN1nVrcE1NYm-2BrK3e-2BuP5tfGG3uzLhut4UYuW-2BDDMe16TDk7Mf7GxidDGjaYPHH6Y081Lp17iegOh6lAR69I3v7mhYONq6wkcMPQz2bB7b_f_o-2BP8qOCZ5s5G2vwG8D0FI-2Fjsy5Le0JzCTpDebZwPbsVpl5PTBt9TqrWI0sQniNG2LJhWfZQHCnliLL7A2akFNy1WEEXzY5BSxbJ2hHDGu0013F0DJPFbd6ME1kks09OFmtPmRZz1Wp-2Bi39lixe1kD2p8U8NbaIDQGNO3kFsmZEqs4JgJMSZJquAooNiwRz-2FRk-2Bwujf3trijXK2tLQYJLBIngzqZMEaq9YpYo-2FFPj28xw7OYYhfGmnm-2B6ShLlSyAEGxOqLB7LGsG5OZmwbxYsioCt-2BnQivky35CC0DmFfg3yntnCZVfSCYHI-2BZo2pV0mFGFvb0T9C-2F1DezZD23htjVYvB7P7SDAAlpMKJp8Ky-2B-2BptTJaXYovmYzcrmEvW6zuH5hWw4LV9bIQVjJokXuR6TYkUcCPJP61LD-2FwPmFYtSvMvYAw19ClF3pc7mV48ZwBOrfmym7aCPAoXm-2BlkaA-2BBqdGesPRM6CslMR6IMWUM5ImsxjC97waiSktSXuAext9APYnjnDFdLfd-2FCrVaYJTQZDPS6AvEZxSR30jr-2BVUA0J9DvbdvBhP0ao-2FmDFKv6yJ7NETvs-2Bq5btLdjxRF8AlrDHkSLeyD4WH9bKEPVSKX1u0G-2FAEMeYrJISpTf0uQRqclPQJTpmacM4x94oQxKp2wuASk2mk368-2FiNIjaLGUHkGllsXvKr3Nmg7D6shUprOcFYj0uw1lvFwK-2BIM6R2M9hd9PwkcScVqh4gVEWMEN-2FuSzqHuyZ7XnHQNcQrdIoH15q');
 
-                showToast('Simulation Mode Active. Click ad blocks to preview layout behavior.');
+                showToast('Default affiliate links restored.');
             }
         }
 
@@ -1848,6 +1759,37 @@
             };
             return text.replace(/[&<>"']/g, function(m) { return map[m]; });
         }
+
+        // Mobile menu toggle
+        (function() {
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const nav = document.getElementById('main-nav');
+            const overlay = document.getElementById('nav-overlay');
+            if (menuBtn && nav) {
+                menuBtn.addEventListener('click', () => { nav.classList.toggle('mobile-open'); overlay.classList.toggle('visible'); menuBtn.textContent = nav.classList.contains('mobile-open') ? '✕' : '☰'; });
+                if (overlay) overlay.addEventListener('click', () => { nav.classList.remove('mobile-open'); overlay.classList.remove('visible'); menuBtn.textContent = '☰'; });
+            }
+        })();
     </script>
+
+    <!-- Cookie Consent Banner -->
+    <div class="cookie-consent" id="cookie-consent">
+        <div class="cookie-consent-inner">
+            <p class="cookie-consent-text">We use cookies and similar technologies (Google Analytics, Google AdSense) to analyze site traffic and serve relevant ads. By clicking "Accept", you consent to our use of cookies. Read our <a href="privacy.html">Privacy Policy</a>.</p>
+            <div class="cookie-consent-actions">
+                <button type="button" class="cookie-accept-btn" id="cookie-accept">Accept</button>
+                <button type="button" class="cookie-decline-btn" id="cookie-decline">Decline</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        (function() {
+            const consentBanner = document.getElementById('cookie-consent');
+            if (!localStorage.getItem('cookie_consent')) consentBanner.classList.add('visible');
+            document.getElementById('cookie-accept')?.addEventListener('click', () => { localStorage.setItem('cookie_consent', 'accepted'); consentBanner.classList.remove('visible'); });
+            document.getElementById('cookie-decline')?.addEventListener('click', () => { localStorage.setItem('cookie_consent', 'declined'); consentBanner.classList.remove('visible'); });
+        })();
+    </script>
+
 </body>
 </html>

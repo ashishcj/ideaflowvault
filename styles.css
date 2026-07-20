@@ -1889,3 +1889,198 @@ body.dark-theme .code-container pre {
     text-align: left;
 }
 
+/* ===== Cookie Consent Banner ===== */
+.cookie-consent {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: var(--bg-header);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 1.25rem 2rem;
+    z-index: 9999;
+    display: none;
+    animation: slideUpConsent 0.4s ease-out;
+}
+
+.cookie-consent.visible {
+    display: block;
+}
+
+@keyframes slideUpConsent {
+    from { transform: translateY(100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.cookie-consent-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.cookie-consent-text {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    flex: 1;
+    min-width: 280px;
+}
+
+.cookie-consent-text a {
+    color: var(--primary);
+    text-decoration: underline;
+}
+
+.cookie-consent-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-shrink: 0;
+}
+
+.cookie-consent-actions button {
+    padding: 0.6rem 1.4rem;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    border: none;
+}
+
+.cookie-accept-btn {
+    background: var(--primary);
+    color: #fff;
+}
+
+.cookie-accept-btn:hover {
+    opacity: 0.85;
+}
+
+.cookie-decline-btn {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+.cookie-decline-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== Mobile Navigation ===== */
+.mobile-menu-toggle {
+    display: none;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+    border-radius: var(--radius-sm);
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.3rem;
+    transition: var(--transition-smooth);
+    padding: 0;
+}
+
+.mobile-menu-toggle:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--primary);
+}
+
+/* ===== Responsive Media Queries ===== */
+@media (max-width: 900px) {
+    .mobile-menu-toggle {
+        display: flex;
+    }
+
+    nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: var(--bg-header);
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+        z-index: 200;
+        transition: right 0.3s ease-in-out;
+        padding: 5rem 2rem 2rem;
+        overflow-y: auto;
+    }
+
+    nav.mobile-open {
+        right: 0;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+
+    nav ul li a {
+        font-size: 1.05rem;
+        display: block;
+        padding: 0.5rem 0;
+    }
+
+    .nav-container .cta-button {
+        display: none;
+    }
+
+    .mobile-nav-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 199;
+        display: none;
+    }
+
+    .mobile-nav-overlay.visible {
+        display: block;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 7rem 1.5rem 3rem;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .hero-stats {
+        justify-content: center;
+    }
+
+    .footer-top {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .tools-grid, .why-grid, .idea-deck {
+        grid-template-columns: 1fr;
+    }
+
+    .cookie-consent-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 600px) {
+    h1 { font-size: 1.8rem; }
+    .section-title { font-size: 1.5rem; }
+    .hero-stats { flex-direction: column; gap: 0.75rem; }
+    .nav-container { padding: 0.75rem 1rem; }
+    .logo { font-size: 1.2rem; }
+}
+

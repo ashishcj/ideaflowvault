@@ -74,7 +74,7 @@
             <a href="index.html" class="logo">
                 <img src="logo.png" alt="Ideaflow Vault" class="logo-icon"> Ideaflow Vault
             </a>
-            <nav>
+            <nav id="main-nav">
                 <ul>
                     <li><a href="niche-research.html">Niche Directory</a></li>
                     <li><a href="niche-research.html#vault">Research Vault</a></li>
@@ -84,8 +84,10 @@
                     <li><a href="articles/index.html">Guides</a></li>
                 </ul>
             </nav>
+            <div class="mobile-nav-overlay" id="nav-overlay"></div>
             <div style="display: flex; align-items: center; gap: 0.5rem;">
                 <button type="button" class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+                <button type="button" class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Open Menu">☰</button>
                 <a href="niche-research.html#vault" class="cta-button">Log New Idea</a>
             </div>
         </div>
@@ -154,6 +156,17 @@
         </div>
     </footer>
 
+    <!-- Cookie Consent Banner -->
+    <div class="cookie-consent" id="cookie-consent">
+        <div class="cookie-consent-inner">
+            <p class="cookie-consent-text">We use cookies and similar technologies (Google Analytics, Google AdSense) to analyze site traffic and serve relevant ads. By clicking "Accept", you consent to our use of cookies. Read our <a href="privacy.html">Privacy Policy</a>.</p>
+            <div class="cookie-consent-actions">
+                <button type="button" class="cookie-accept-btn" id="cookie-accept">Accept</button>
+                <button type="button" class="cookie-decline-btn" id="cookie-decline">Decline</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         window.addEventListener('DOMContentLoaded', () => {
             const themeToggleBtn = document.getElementById('theme-toggle');
@@ -166,6 +179,37 @@
                     themeToggleBtn.textContent = isDark ? '☀️' : '🌙';
                 });
             }
+
+            // Mobile menu toggle
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const nav = document.getElementById('main-nav');
+            const overlay = document.getElementById('nav-overlay');
+            if (menuBtn && nav) {
+                menuBtn.addEventListener('click', () => {
+                    nav.classList.toggle('mobile-open');
+                    overlay.classList.toggle('visible');
+                    menuBtn.textContent = nav.classList.contains('mobile-open') ? '✕' : '☰';
+                });
+                if (overlay) overlay.addEventListener('click', () => {
+                    nav.classList.remove('mobile-open');
+                    overlay.classList.remove('visible');
+                    menuBtn.textContent = '☰';
+                });
+            }
+
+            // Cookie consent
+            const consentBanner = document.getElementById('cookie-consent');
+            if (!localStorage.getItem('cookie_consent')) {
+                consentBanner.classList.add('visible');
+            }
+            document.getElementById('cookie-accept')?.addEventListener('click', () => {
+                localStorage.setItem('cookie_consent', 'accepted');
+                consentBanner.classList.remove('visible');
+            });
+            document.getElementById('cookie-decline')?.addEventListener('click', () => {
+                localStorage.setItem('cookie_consent', 'declined');
+                consentBanner.classList.remove('visible');
+            });
         });
     </script>
 
