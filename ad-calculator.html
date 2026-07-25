@@ -128,6 +128,7 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="niche-research.html">Niche Research</a></li>
                     <li><a href="ad-calculator.html" style="color: #ffffff;">Ad Calculator</a></li>
+                    <li><a href="tools.html">Free Tools</a></li>
                     <li><a href="index.html#tools">Recommended Tools</a></li>
                     <li><a href="index.html#setup">Ad Setup &amp; Payouts</a></li>
                     <li><a href="articles/index.html">Guides</a></li>
@@ -166,58 +167,87 @@
             <div class="calc-container">
                 <!-- Inputs Box -->
                 <div class="calc-inputs">
-                    <!-- Page Views Slider -->
+                    <h3 style="font-family: var(--font-heading); margin-bottom: 1.5rem; font-size: 1.25rem; display: flex; align-items: center; justify-content: space-between;">
+                        <span>Calculator Parameters</span>
+                        <span style="font-size: 0.75rem; font-weight: 500; color: var(--text-muted);">Sliders + Direct Numeric Inputs</span>
+                    </h3>
+
+                    <!-- Page Views Input & Slider -->
                     <div class="input-group">
                         <div class="input-header">
-                            <span class="input-label">Monthly Page Views</span>
-                            <span class="input-value-display" id="views-val">100,000</span>
+                            <label for="views-input" class="input-label">Monthly Page Views</label>
+                            <div class="input-box-wrapper">
+                                <input type="number" id="views-input" min="1000" max="5000000" step="5000" value="100000" class="input-number" oninput="syncViewsFromInput()">
+                            </div>
                         </div>
-                        <input type="range" id="views-slider" min="10000" max="1000000" step="5000" value="100000">
+                        <input type="range" id="views-slider" min="10000" max="1000000" step="5000" value="100000" aria-label="Monthly Page Views Slider">
                     </div>
 
-                    <!-- CTR Slider -->
+                    <!-- CTR Input & Slider -->
                     <div class="input-group">
                         <div class="input-header">
-                            <span class="input-label">Ad Click-Through Rate (CTR)</span>
-                            <span class="input-value-display" id="ctr-val">1.50%</span>
+                            <label for="ctr-input" class="input-label">Click-Through Rate (CTR)</label>
+                            <div class="input-box-wrapper">
+                                <input type="number" id="ctr-input" min="0.05" max="15.00" step="0.05" value="1.50" class="input-number" oninput="syncCtrFromInput()">
+                                <span class="input-unit">%</span>
+                            </div>
                         </div>
-                        <input type="range" id="ctr-slider" min="0.1" max="6.0" step="0.05" value="1.5">
+                        <input type="range" id="ctr-slider" min="0.1" max="6.0" step="0.05" value="1.50" aria-label="CTR Slider">
                     </div>
 
-                    <!-- CPC Slider -->
+                    <!-- CPC Input & Slider -->
                     <div class="input-group">
                         <div class="input-header">
-                            <span class="input-label">Cost Per Click (CPC)</span>
-                            <span class="input-value-display" id="cpc-val">$0.45</span>
+                            <label for="cpc-input" class="input-label">Cost Per Click (CPC)</label>
+                            <div class="input-box-wrapper">
+                                <span class="input-unit">$</span>
+                                <input type="number" id="cpc-input" min="0.01" max="50.00" step="0.01" value="0.45" class="input-number" oninput="syncCpcFromInput()">
+                            </div>
                         </div>
-                        <input type="range" id="cpc-slider" min="0.05" max="3.00" step="0.01" value="0.45">
+                        <input type="range" id="cpc-slider" min="0.05" max="5.00" step="0.01" value="0.45" aria-label="CPC Slider">
                     </div>
 
                     <!-- Niche Presets -->
-                    <div style="margin-top: 1rem;">
-                        <span class="input-label" style="display: block; margin-bottom: 0.5rem;">Niche Presets</span>
+                    <div style="margin-top: 1.5rem;">
+                        <span class="input-label" style="display: block; margin-bottom: 0.5rem;">Niche Metric Presets</span>
                         <div class="preset-ctr-grid">
-                            <button type="button" class="preset-btn" onclick="applyPreset('finance', this)">Finance</button>
-                            <button type="button" class="preset-btn" onclick="applyPreset('tech', this)">Tech / SaaS</button>
-                            <button type="button" class="preset-btn text-active" onclick="applyPreset('hobby', this)">Hobby / Travel</button>
-                            <button type="button" class="preset-btn" onclick="applyPreset('custom', this)">Custom Reset</button>
+                            <button type="button" class="preset-btn" onclick="applyPreset('finance', this)">💼 Finance / Legal</button>
+                            <button type="button" class="preset-btn" onclick="applyPreset('tech', this)">💻 Tech / SaaS</button>
+                            <button type="button" class="preset-btn" onclick="applyPreset('ecommerce', this)">🛒 E-commerce</button>
+                            <button type="button" class="preset-btn text-active" onclick="applyPreset('hobby', this)">✈️ Hobby / Travel</button>
+                            <button type="button" class="preset-btn" onclick="applyPreset('gaming', this)">🎮 Gaming / Ent.</button>
+                            <button type="button" class="preset-btn" onclick="applyPreset('custom', this)">🔄 Reset Default</button>
+                        </div>
+                    </div>
+
+                    <!-- Target Revenue Solver Box -->
+                    <div class="target-solver-box" style="margin-top: 2rem; padding: 1.25rem; background: var(--primary-glow); border: 1px solid var(--primary); border-radius: var(--radius-md);">
+                        <h4 style="font-family: var(--font-heading); font-size: 0.95rem; font-weight: 700; color: var(--primary); margin-bottom: 0.5rem;">🎯 Revenue Goal Calculator</h4>
+                        <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.75rem;">How many monthly visitors do you need to hit your income goal at current RPM?</p>
+                        <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+                            <span style="font-size: 0.85rem; font-weight: 600;">Target Goal: $</span>
+                            <input type="number" id="target-monthly-goal" value="1000" min="100" max="100000" step="100" class="input-number" style="width: 110px;" oninput="calculateTargetGoal()">
+                            <span style="font-size: 0.85rem; color: var(--text-secondary);">/ month</span>
+                        </div>
+                        <div id="target-goal-result" style="margin-top: 0.75rem; font-size: 0.85rem; font-weight: 700; color: var(--text-primary);">
+                            Req. Traffic: <span style="color: var(--primary);" id="target-views-needed">148,148</span> page views/mo
                         </div>
                     </div>
                 </div>
 
                 <!-- Results Box -->
                 <div class="calc-results">
-                    <h3 style="font-family: var(--font-heading); margin-bottom: 1.5rem; font-size: 1.25rem;">Estimated Returns</h3>
+                    <h3 style="font-family: var(--font-heading); margin-bottom: 1.5rem; font-size: 1.25rem;">Estimated Returns Breakdown</h3>
                     <div class="results-grid">
                         <div class="result-card">
-                            <span class="result-label">Calculated Page RPM <br><small style="color: var(--text-muted);">Revenue Per 1,000 Views</small></span>
+                            <span class="result-label">Page RPM <br><small style="color: var(--text-muted);">Revenue / 1k Views</small></span>
                             <span class="result-val" id="rpm-result">$6.75</span>
                         </div>
                         <div class="result-card">
                             <span class="result-label">Estimated Daily Profit</span>
                             <span class="result-val" id="daily-result">$22.50</span>
                         </div>
-                        <div class="result-card">
+                        <div class="result-card highlight-card">
                             <span class="result-label">Estimated Monthly Revenue</span>
                             <span class="result-val highlight-val" id="monthly-result">$675.00</span>
                         </div>
@@ -225,11 +255,19 @@
                             <span class="result-label">Estimated Annual Revenue</span>
                             <span class="result-val" id="annual-result">$8,100.00</span>
                         </div>
+                        <div class="result-card">
+                            <span class="result-label">Est. Monthly Ad Clicks</span>
+                            <span class="result-val" id="clicks-result">1,500</span>
+                        </div>
+                        <div class="result-card">
+                            <span class="result-label">Est. eCPM (Cost/1k Ads)<br><small style="color: var(--text-muted);">@ 2.5 ads/page</small></span>
+                            <span class="result-val" id="ecpm-result">$2.70</span>
+                        </div>
                     </div>
                     <!-- Earnings Projection Chart -->
                     <div class="chart-wrapper">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
-                            <div class="chart-title" style="margin: 0;">Estimated Monthly Revenue Projections (12 Months)</div>
+                            <div class="chart-title" style="margin: 0;">12-Month Revenue Growth Projection</div>
                             <div style="display: flex; gap: 0.5rem;">
                                 <button type="button" onclick="copyShareableLink()" class="share-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; border-radius: var(--radius-sm); background: var(--bg-main); border: 1px solid var(--border-color); color: var(--text-secondary); cursor: pointer; display: flex; align-items: center; gap: 0.3rem;" onmouseover="this.style.borderColor='var(--primary)'" onmouseout="this.style.borderColor='var(--border-color)'">
                                     🔗 Share Link
@@ -437,20 +475,27 @@
         let productionModeActive = true;
         let revenueChart = null;
 
-        // Calculator Inputs
+        // Calculator Inputs - Sliders
         const viewsSlider = document.getElementById('views-slider');
         const ctrSlider = document.getElementById('ctr-slider');
         const cpcSlider = document.getElementById('cpc-slider');
 
-        // Calculator Outputs Display
-        const viewsVal = document.getElementById('views-val');
-        const ctrVal = document.getElementById('ctr-val');
-        const cpcVal = document.getElementById('cpc-val');
+        // Calculator Inputs - Number Boxes
+        const viewsInput = document.getElementById('views-input');
+        const ctrInput = document.getElementById('ctr-input');
+        const cpcInput = document.getElementById('cpc-input');
 
+        // Calculator Outputs Display
         const rpmResult = document.getElementById('rpm-result');
         const dailyResult = document.getElementById('daily-result');
         const monthlyResult = document.getElementById('monthly-result');
         const annualResult = document.getElementById('annual-result');
+        const clicksResult = document.getElementById('clicks-result');
+        const ecpmResult = document.getElementById('ecpm-result');
+
+        // Target solver elements
+        const targetMonthlyGoal = document.getElementById('target-monthly-goal');
+        const targetViewsNeeded = document.getElementById('target-views-needed');
 
         // Code snippets
         const adsenseHeaderCode = document.getElementById('adsense-header-code');
@@ -458,9 +503,9 @@
 
         // Initialize Workspace
         window.addEventListener('DOMContentLoaded', () => {
-            viewsSlider.addEventListener('input', updateCalculator);
-            ctrSlider.addEventListener('input', updateCalculator);
-            cpcSlider.addEventListener('input', updateCalculator);
+            if (viewsSlider) viewsSlider.addEventListener('input', () => { viewsInput.value = viewsSlider.value; updateCalculator(); });
+            if (ctrSlider) ctrSlider.addEventListener('input', () => { ctrInput.value = ctrSlider.value; updateCalculator(); });
+            if (cpcSlider) cpcSlider.addEventListener('input', () => { cpcInput.value = cpcSlider.value; updateCalculator(); });
 
             // Initialize Dynamic Chart
             initRevenueChart();
@@ -491,17 +536,20 @@
                 if (paramVolume) {
                     const parsedVol = parseInt(paramVolume);
                     if (!isNaN(parsedVol)) {
-                        viewsSlider.value = parsedVol > 1000000 ? 1000000 : parsedVol;
+                        viewsSlider.value = parsedVol > 5000000 ? 5000000 : parsedVol;
+                        viewsInput.value = viewsSlider.value;
                     }
                 }
                 if (paramCpc) {
                     const parsedCpc = parseFloat(paramCpc);
                     if (!isNaN(parsedCpc)) {
                         cpcSlider.value = parsedCpc;
+                        cpcInput.value = parsedCpc;
                     }
                 }
                 // Set default/standard CTR for loaded presets
                 ctrSlider.value = 1.80;
+                ctrInput.value = 1.80;
 
                 updateCalculator();
                 
@@ -510,6 +558,28 @@
             }
         });
 
+        // Sync inputs back to sliders
+        function syncViewsFromInput() {
+            let val = parseInt(viewsInput.value) || 0;
+            if (val > 5000000) val = 5000000;
+            viewsSlider.value = val;
+            updateCalculator();
+        }
+
+        function syncCtrFromInput() {
+            let val = parseFloat(ctrInput.value) || 0;
+            if (val > 20) val = 20;
+            ctrSlider.value = val;
+            updateCalculator();
+        }
+
+        function syncCpcFromInput() {
+            let val = parseFloat(cpcInput.value) || 0;
+            if (val > 50) val = 50;
+            cpcSlider.value = val;
+            updateCalculator();
+        }
+
         // Format currency helper
         function formatCurrency(amount) {
             return '$' + amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -517,29 +587,48 @@
 
         // Calculator updates
         function updateCalculator() {
-            const views = parseInt(viewsSlider.value);
-            const ctr = parseFloat(ctrSlider.value);
-            const cpc = parseFloat(cpcSlider.value);
-
-            viewsVal.textContent = views.toLocaleString();
-            ctrVal.textContent = ctr.toFixed(2) + '%';
-            cpcVal.textContent = '$' + cpc.toFixed(2);
+            const views = parseInt(viewsInput ? viewsInput.value : viewsSlider.value) || 0;
+            const ctr = parseFloat(ctrInput ? ctrInput.value : ctrSlider.value) || 0;
+            const cpc = parseFloat(cpcInput ? cpcInput.value : cpcSlider.value) || 0;
 
             const rpm = ctr * cpc * 10;
             const daily = (views / 30) * (rpm / 1000);
             const monthly = views * (rpm / 1000);
             const annual = monthly * 12;
+            const clicks = Math.round(views * (ctr / 100));
+            const ecpm = rpm / 2.5; // Average 2.5 ad spots per page view
 
-            rpmResult.textContent = '$' + rpm.toFixed(2);
-            dailyResult.textContent = '$' + daily.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-            monthlyResult.textContent = '$' + monthly.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-            annualResult.textContent = '$' + annual.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            if (rpmResult) rpmResult.textContent = '$' + rpm.toFixed(2);
+            if (dailyResult) dailyResult.textContent = '$' + daily.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            if (monthlyResult) monthlyResult.textContent = '$' + monthly.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            if (annualResult) annualResult.textContent = '$' + annual.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            if (clicksResult) clicksResult.textContent = clicks.toLocaleString();
+            if (ecpmResult) ecpmResult.textContent = '$' + ecpm.toFixed(2);
+
+            calculateTargetGoal();
 
             // Update Dynamic Chart data smoothly
             if (revenueChart) {
                 revenueChart.data.datasets[0].data = Array.from({length: 12}, () => monthly);
                 revenueChart.update('none'); // Update immediately without transition flash
             }
+        }
+
+        // Calculate traffic needed for target goal
+        function calculateTargetGoal() {
+            if (!targetMonthlyGoal || !targetViewsNeeded) return;
+            const goal = parseFloat(targetMonthlyGoal.value) || 1000;
+            const ctr = parseFloat(ctrInput ? ctrInput.value : ctrSlider.value) || 1.5;
+            const cpc = parseFloat(cpcInput ? cpcInput.value : cpcSlider.value) || 0.45;
+            const rpm = ctr * cpc * 10;
+
+            if (rpm <= 0) {
+                targetViewsNeeded.textContent = 'N/A';
+                return;
+            }
+
+            const viewsNeeded = Math.ceil((goal / rpm) * 1000);
+            targetViewsNeeded.textContent = viewsNeeded.toLocaleString();
         }
 
         // Initialize Chart.js
@@ -812,22 +901,34 @@
             }
 
             if (presetType === 'finance') {
-                ctrSlider.value = 0.90;
-                cpcSlider.value = 2.10;
+                ctrSlider.value = 1.20;
+                cpcSlider.value = 2.50;
                 viewsSlider.value = 50000;
             } else if (presetType === 'tech') {
-                ctrSlider.value = 1.60;
-                cpcSlider.value = 0.95;
+                ctrSlider.value = 1.80;
+                cpcSlider.value = 1.15;
                 viewsSlider.value = 120000;
+            } else if (presetType === 'ecommerce') {
+                ctrSlider.value = 2.20;
+                cpcSlider.value = 0.85;
+                viewsSlider.value = 180000;
             } else if (presetType === 'hobby') {
                 ctrSlider.value = 2.80;
-                cpcSlider.value = 0.22;
+                cpcSlider.value = 0.25;
                 viewsSlider.value = 250000;
+            } else if (presetType === 'gaming') {
+                ctrSlider.value = 3.50;
+                cpcSlider.value = 0.18;
+                viewsSlider.value = 300000;
             } else if (presetType === 'custom') {
                 ctrSlider.value = 1.50;
                 cpcSlider.value = 0.45;
                 viewsSlider.value = 100000;
             }
+
+            if (ctrInput) ctrInput.value = ctrSlider.value;
+            if (cpcInput) cpcInput.value = cpcSlider.value;
+            if (viewsInput) viewsInput.value = viewsSlider.value;
 
             updateCalculator();
         }
