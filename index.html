@@ -1055,20 +1055,20 @@
 
         // Initialize Workspace
         window.addEventListener('DOMContentLoaded', () => {
-            viewsSlider.addEventListener('input', updateCalculator);
-            ctrSlider.addEventListener('input', updateCalculator);
-            cpcSlider.addEventListener('input', updateCalculator);
+            if (viewsSlider) viewsSlider.addEventListener('input', updateCalculator);
+            if (ctrSlider) ctrSlider.addEventListener('input', updateCalculator);
+            if (cpcSlider) cpcSlider.addEventListener('input', updateCalculator);
 
             loadNichesFromStorage();
             loadAffiliateSettings();
             
-            // Initialize Dynamic Chart
+            // Initialize Dynamic Chart if calculator is on page
             initRevenueChart();
 
             updateCalculator();
             toggleProductionMode();
 
-            // Bind auto-save listeners to configuration fields
+            // Bind auto-save listeners to configuration fields if present
             const configFields = ['publisher-id', 'adslot-id', 'linkwhisper-affiliate', 'amazon-affiliate', 'namecheap-affiliate', 'fiverr-affiliate'];
             configFields.forEach(id => {
                 const el = document.getElementById(id);
@@ -1076,7 +1076,8 @@
                     el.addEventListener('input', saveAffiliateSettings);
                 }
             });
-            document.getElementById('production-toggle').addEventListener('change', saveAffiliateSettings);
+            const prodToggle = document.getElementById('production-toggle');
+            if (prodToggle) prodToggle.addEventListener('change', saveAffiliateSettings);
 
             // Theme Toggler Switch Logic
             const themeToggleBtn = document.getElementById('theme-toggle');
@@ -1091,19 +1092,8 @@
                 });
             }
 
-            // Revenue projection demo — updates widget based on calculator slider values
-            setInterval(() => {
-                const views = parseInt(viewsSlider.value);
-                const ctr = parseFloat(ctrSlider.value);
-                const cpc = parseFloat(cpcSlider.value);
-                const dailyViews = Math.round(views / 30);
-                const dailyClicks = Math.round(dailyViews * (ctr / 100));
-                const dailyEarnings = dailyClicks * cpc;
-                totalViews = dailyViews;
-                totalClicks = dailyClicks;
-                totalEarnings = dailyEarnings;
-                updateStatsUI();
-            }, 3000);
+            // Start Live Active Simulation for Hero Demo Widget
+            initLiveDemoSimulation();
         });
 
         // Format currency helper
@@ -1111,40 +1101,72 @@
             return '$' + amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         }
 
-        // Update stats displays
-        function updateStatsUI() {
-            liveEarningsEl.textContent = formatCurrency(totalEarnings);
-            liveViewsEl.textContent = totalViews.toLocaleString();
-            liveClicksEl.textContent = totalClicks.toLocaleString();
-            statsRevenueEl.textContent = formatCurrency(totalEarnings);
-            const calculatedCtr = totalViews > 0 ? (totalClicks / totalViews) * 100 : 0.00;
-            liveCtrEl.textContent = calculatedCtr.toFixed(2) + '%';
+        // Live Active Simulation Ticker
+        function initLiveDemoSimulation() {
+            // Initial realistic demo baseline
+            totalViews = 3333;
+            totalClicks = 50;
+            const cpcRate = 0.45;
+            totalEarnings = totalClicks * cpcRate; // $22.50
+
+            updateStatsUI();
+
+            // Real-time continuous simulation tick every 2.5 seconds
+            setInterval(() => {
+                // Simulate incoming traffic (+4 to +15 views per tick)
+                const newViews = Math.floor(Math.random() * 12) + 4;
+                totalViews += newViews;
+
+                // Simulate random ad clicks (approx 1.5% - 2.5% chance per visitor)
+                const clickChance = Math.random();
+                let newClicks = 0;
+                if (clickChance > 0.65) {
+                    newClicks = Math.floor(Math.random() * 2) + 1; // 1 or 2 clicks
+                    totalClicks += newClicks;
+                    totalEarnings += (newClicks * cpcRate);
+                }
+
+                updateStatsUI();
+            }, 2500);
         }
 
-        // Calculator updates
-        function updateCalculator() {
-            const views = parseInt(viewsSlider.value);
-            const ctr = parseFloat(ctrSlider.value);
-            const cpc = parseFloat(cpcSlider.value);
+        // Update stats displays safely
+        function updateStatsUI() {
+            if (liveEarningsEl) liveEarningsEl.textContent = formatCurrency(totalEarnings);
+            if (liveViewsEl) liveViewsEl.textContent = totalViews.toLocaleString();
+            if (liveClicksEl) liveClicksEl.textContent = totalClicks.toLocaleString();
+            if (statsRevenueEl) statsRevenueEl.textContent = formatCurrency(totalEarnings);
+            
+            const calculatedCtr = totalViews > 0 ? (totalClicks / totalViews) * 100 : 1.50;
+            if (liveCtrEl) liveCtrEl.textContent = calculatedCtr.toFixed(2) + '%';
+        }
 
-            viewsVal.textContent = views.toLocaleString();
-            ctrVal.textContent = ctr.toFixed(2) + '%';
-            cpcVal.textContent = '$' + cpc.toFixed(2);
+        // Calculator updates (safely checks if sliders exist)
+        function updateCalculator() {
+            if (!viewsSlider || !ctrSlider || !cpcSlider) return;
+
+            const views = parseInt(viewsSlider.value) || 100000;
+            const ctr = parseFloat(ctrSlider.value) || 1.5;
+            const cpc = parseFloat(cpcSlider.value) || 0.45;
+
+            if (viewsVal) viewsVal.textContent = views.toLocaleString();
+            if (ctrVal) ctrVal.textContent = ctr.toFixed(2) + '%';
+            if (cpcVal) cpcVal.textContent = '$' + cpc.toFixed(2);
 
             const rpm = ctr * cpc * 10;
             const daily = (views / 30) * (rpm / 1000);
             const monthly = views * (rpm / 1000);
             const annual = monthly * 12;
 
-            rpmResult.textContent = '$' + rpm.toFixed(2);
-            dailyResult.textContent = '$' + daily.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-            monthlyResult.textContent = '$' + monthly.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-            annualResult.textContent = '$' + annual.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            if (rpmResult) rpmResult.textContent = '$' + rpm.toFixed(2);
+            if (dailyResult) dailyResult.textContent = '$' + daily.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            if (monthlyResult) monthlyResult.textContent = '$' + monthly.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            if (annualResult) annualResult.textContent = '$' + annual.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
             // Update Dynamic Chart data smoothly
             if (revenueChart) {
                 revenueChart.data.datasets[0].data = Array.from({length: 12}, () => monthly);
-                revenueChart.update('none'); // Update immediately without transition flash
+                revenueChart.update('none');
             }
         }
 
